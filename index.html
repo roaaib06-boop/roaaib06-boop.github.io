@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رؤى إبراهيم — مصممة ومطوّرة واجهات عربية</title>
+<meta name="description" content="Roaa Ibrahim — Arabic-first UI/UX designer and front-end developer. رؤى إبراهيم، مصممة UI/UX ومطوّرة واجهات: أصمّم تجارب رقمية عربية وأبنيها بالكود.">
+<meta property="og:image" content="https://roaaib06-boop.github.io/img/og.jpg">
+<meta property="og:url" content="https://roaaib06-boop.github.io/">
+<link rel="canonical" href="https://roaaib06-boop.github.io/">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="ar" href="#home">
+<link rel="alternate" hreflang="en" href="#en-home">
+<meta name="author" content="Roaa Ibrahim">
+<meta property="og:title" content="رؤى إبراهيم — مصممة ومطوّرة واجهات عربية">
+<meta property="og:description" content="أصمّم تجارب رقمية عربية وأبنيها بالكود. من أعمالي: منارة الأشرفية، سِراج.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23C8F04A'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' font-family='Arial' font-weight='900' fill='%230A0A0B'%3E%D8%B1%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;800;900&family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Readex+Pro:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#0A0A0B;color:#F2EFE8;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;overflow-x:hidden}
+img,svg{max-width:100%}
+.view[hidden]{display:none}
+.view{min-height:100vh}
+:focus-visible{outline:2px solid #C8F04A;outline-offset:3px}
+.skip{position:fixed;top:-60px;right:16px;z-index:200;background:#C8F04A;color:#0A0A0B;padding:12px 18px;border-radius:999px;font-weight:600;text-decoration:none}
+.skip:focus{top:16px}
+
+/* intro + curtain */
+#intro{position:fixed;inset:0;z-index:300;background:#0A0A0B;display:flex;align-items:center;justify-content:center;transition:transform .9s cubic-bezier(.76,0,.24,1)}
+#intro span{font-family:Alexandria,sans-serif;font-weight:900;font-size:clamp(64px,12vw,160px);color:#F2EFE8;opacity:0;transform:translateY(30px);animation:introIn .7s .1s cubic-bezier(.2,.7,.1,1) forwards}
+#intro span b{color:#C8F04A}
+#intro.out{transform:translateY(-100%)}
+@keyframes introIn{to{opacity:1;transform:none}}
+#curtain{position:fixed;inset:0;z-index:250;background:#C8F04A;transform:translateY(100%);pointer-events:none}
+#curtain.cover{transition:transform .5s cubic-bezier(.76,0,.24,1);transform:translateY(0)}
+#curtain.reveal{transition:transform .5s cubic-bezier(.76,0,.24,1);transform:translateY(-100%)}
+
+/* progress */
+#progress{position:fixed;top:0;right:0;height:3px;width:0;background:#C8F04A;z-index:150}
+
+/* cursor */
+#cur{position:fixed;top:0;left:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#F2EFE8;mix-blend-mode:difference;pointer-events:none;z-index:400;transition:width .25s,height .25s,margin .25s;display:none}
+#cur.big{width:64px;height:64px;margin:-32px 0 0 -32px}
+@media (pointer:fine){#cur{display:block}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.1,1),transform .9s cubic-bezier(.2,.7,.1,1)}
+.rv.in{opacity:1;transform:none}
+
+/* demo bar */
+#demobar{position:fixed;bottom:20px;left:50%;transform:translate(-50%,140%);z-index:160;display:flex;gap:10px;align-items:center;padding:8px 8px 8px 20px;border-radius:999px;background:#0A0A0B;color:#F2EFE8;box-shadow:0 20px 50px rgba(0,0,0,.35);font-size:14px;transition:transform .5s cubic-bezier(.2,.7,.1,1);white-space:nowrap;font-family:'IBM Plex Sans Arabic',sans-serif}
+#demobar{visibility:hidden}#demobar.show{transform:translate(-50%,0);visibility:visible}
+#demobar a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:#C8F04A;color:#0A0A0B;text-decoration:none;font-weight:600}
+#demobar .dot{width:8px;height:8px;border-radius:50%;background:#C8F04A}
+
+#lang{position:fixed;bottom:20px;left:20px;z-index:170;min-width:56px;height:56px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(10,10,11,.85);color:#F2EFE8;font:600 15px 'Space Grotesk','IBM Plex Sans Arabic',sans-serif;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#lang:hover{background:#C8F04A;color:#0A0A0B}
+#lang[hidden]{display:none}
+.copybtn{display:inline-flex;align-items:center;min-height:64px;padding:0 28px;border-radius:999px;border:1.5px solid #0A0A0B;background:transparent;color:#0A0A0B;font:inherit;font-weight:600;font-size:17px;cursor:pointer}
+
+/* small screens */
+@media (max-width:760px){
+ .rq-row{grid-template-columns:1fr !important;gap:8px !important}
+ .view section, .view header > div{padding-left:20px !important;padding-right:20px !important}
+ #demobar{font-size:12px;padding-left:14px}
+ #demobar .txt{display:none}
+ .view dl dd{font-size:16px !important;white-space:nowrap}
+ .view figure[style*="span 2"]{grid-column:auto !important}
+}
+@media (prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .rv{opacity:1;transform:none;transition:none}
+ #intro{display:none}
+ #curtain{display:none}
+}
+
+
+.view[data-route="home"] a{color:#F2EFE8}.view[data-route="home"] a:hover{color:#C8F04A}
+@keyframes rq-marquee{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@keyframes rq-rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes rq-pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,240,74,.55)}50%{box-shadow:0 0 0 8px rgba(200,240,74,0)}}
+.rq-track{animation:rq-marquee 38s linear infinite}
+.rq-rise{animation:rq-rise 1s cubic-bezier(.2,.7,.1,1) both}
+.rq-d1{animation-delay:.12s}.rq-d2{animation-delay:.24s}.rq-d3{animation-delay:.36s}
+.rq-dot{animation:rq-pulse 2.2s ease-in-out infinite}
+.rq-card .rq-media{transition:transform .8s cubic-bezier(.2,.7,.1,1)}
+.rq-card:hover .rq-media{transform:scale(1.03)}
+.rq-card:hover .rq-go{background:#C8F04A;color:#0A0A0B}
+.rq-row{transition:background .35s,color .35s}
+.rq-row:hover{background:#C8F04A;color:#0A0A0B}
+.rq-row:hover .rq-muted{color:#0A0A0B}
+@media (prefers-reduced-motion:reduce){.rq-track,.rq-rise,.rq-dot{animation:none}.rq-card .rq-media{transition:none}}
+
+
+
+.view[data-route="manara"] a{color:#FAF7F1}.view[data-route="manara"] a:hover{color:#9EC3E0}
+
+
+
+.view[data-route="siraj"] a{color:#F6EFE2}.view[data-route="siraj"] a:hover{color:#E3A33B}
+@keyframes sj-glow{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.9;transform:scale(1.08)}}
+.sj-glow{animation:sj-glow 4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.sj-glow{animation:none}}
+
+
+
+.view[data-route="en-home"] a{color:#F2EFE8}.view[data-route="en-home"] a:hover{color:#C8F04A}
+@keyframes rq-marquee{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@keyframes rq-rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes rq-pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,240,74,.55)}50%{box-shadow:0 0 0 8px rgba(200,240,74,0)}}
+.rq-track{animation:rq-marquee 38s linear infinite}
+.rq-rise{animation:rq-rise 1s cubic-bezier(.2,.7,.1,1) both}
+.rq-d1{animation-delay:.12s}.rq-d2{animation-delay:.24s}.rq-d3{animation-delay:.36s}
+.rq-dot{animation:rq-pulse 2.2s ease-in-out infinite}
+.rq-card .rq-media{transition:transform .8s cubic-bezier(.2,.7,.1,1)}
+.rq-card:hover .rq-media{transform:scale(1.03)}
+.rq-card:hover .rq-go{background:#C8F04A;color:#0A0A0B}
+.rq-row{transition:background .35s,color .35s}
+.rq-row:hover{background:#C8F04A;color:#0A0A0B}
+.rq-row:hover .rq-muted{color:#0A0A0B}
+@media (prefers-reduced-motion:reduce){.rq-track,.rq-rise,.rq-dot{animation:none}.rq-card .rq-media{transition:none}}
+
+
+
+.view[data-route="en-manara"] a{color:#FAF7F1}.view[data-route="en-manara"] a:hover{color:#9EC3E0}
+
+
+
+.view[data-route="en-siraj"] a{color:#F6EFE2}.view[data-route="en-siraj"] a:hover{color:#E3A33B}
+@keyframes sj-glow{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.9;transform:scale(1.08)}}
+.sj-glow{animation:sj-glow 4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.sj-glow{animation:none}}
+
+
+
+.view[data-route="manara-site"] a{color:#0B2238}.view[data-route="manara-site"] a:hover{color:#10446E}
+.mn-ph{transition:transform 1s cubic-bezier(.2,.7,.1,1)}
+.mn-fig:hover .mn-ph{transform:scale(1.04)}
+@media (prefers-reduced-motion:reduce){.mn-ph{transition:none}}
+
+</style>
+</head>
+<body>
+<a class="skip" id="skip" href="#top">تخطَّ إلى المحتوى</a>
+<div id="intro" aria-hidden="true"><span>رؤى<b>.</b></span></div>
+<div id="curtain" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+<div id="cur" aria-hidden="true"></div>
+
+<main class="view" data-route="home" data-lang="ar" lang="ar" dir="rtl" data-title="رؤى إبراهيم — مصممة ومطوّرة واجهات عربية" style="background:#0A0A0B" hidden>
+<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; color: #F2EFE8; background: #0A0A0B; width: 100%; line-height: 1.7; overflow: hidden">
+
+<header style="max-width: 1360px; margin: 0 auto; padding: 28px 40px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<a href="#top" style="display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: #F2EFE8">
+<span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 50%; background: #C8F04A; color: #0A0A0B; display: inline-flex; align-items: center; justify-content: center; font-family: Alexandria, sans-serif; font-weight: 900; font-size: 24px">ر</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 600; font-size: 18px">رؤى إبراهيم</span>
+</a>
+<nav aria-label="القائمة الرئيسية" style="display: flex; flex-wrap: wrap; gap: 8px; padding: 6px; border: 1px solid #2A2A2E; border-radius: 999px; font-size: 15px">
+<a href="#work" style="padding: 10px 20px; border-radius: 999px; text-decoration: none">الأعمال</a>
+<a href="#services" style="padding: 10px 20px; border-radius: 999px; text-decoration: none">الخدمات</a>
+<a href="#about" style="padding: 10px 20px; border-radius: 999px; text-decoration: none">عنّي</a>
+<a href="#contact" style="padding: 10px 20px; border-radius: 999px; text-decoration: none; background: #F2EFE8; color: #0A0A0B; font-weight: 600">تواصل</a>
+</nav>
+</header>
+
+<section id="top" style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 80px; position: relative">
+<div aria-hidden="true" style="position: absolute; top: 40px; left: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(200,240,74,0.16) 0%, rgba(10,10,11,0) 65%)"></div>
+<p class="rq-rise" style="margin: 0 0 40px; display: inline-flex; gap: 12px; align-items: center; padding: 10px 18px; border: 1px solid #2A2A2E; border-radius: 999px; font-size: 14px; color: #C9C6BF; position: relative"><span class="rq-dot" aria-hidden="true" style="width: 9px; height: 9px; border-radius: 50%; background: #C8F04A; display: inline-block"></span>متاحة لمشاريع جديدة وللعمل عن بُعد</p>
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(56px, 9.6vw, 156px); line-height: 1.04; letter-spacing: -2px; position: relative">
+<span class="rq-rise rq-d1" style="display: block">أصمّم تجارب</span>
+<span class="rq-rise rq-d2" style="display: block">رقمية <span style="color: #C8F04A">عربية</span></span>
+<span class="rq-rise rq-d3" style="display: block; font-weight: 300; color: #C9C6BF">وأبنيها بالكود.</span>
+</h1>
+<div style="margin-top: 72px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; align-items: end; border-top: 1px solid #2A2A2E; padding-top: 32px; position: relative">
+<p style="margin: 0; font-size: 19px; color: #C9C6BF; max-width: 460px">مصممة واجهات ومطوّرة، أحوّل الأفكار إلى مواقع وتطبيقات تعمل فعلاً، بتصميم يبدأ من اليمين ويحترم القارئ العربي.</p>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+<div><dt style="font-size: 13px; color: #8E8E94">التخصص</dt><dd style="margin: 4px 0 0; font-weight: 500">UI/UX · Front-end</dd></div>
+<div><dt style="font-size: 13px; color: #8E8E94">الخلفية</dt><dd style="margin: 4px 0 0; font-weight: 500">هندسة المعلوماتية</dd></div>
+</dl>
+<div style="display: flex; justify-content: flex-end">
+<a href="#work" style="display: inline-flex; align-items: center; justify-content: center; width: 132px; height: 132px; border-radius: 50%; background: #C8F04A; color: #0A0A0B; text-decoration: none; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 17px; text-align: center; line-height: 1.3">شاهد<br>الأعمال ↓</a>
+</div>
+</div>
+</section>
+
+<div aria-hidden="true" style="border-top: 1px solid #2A2A2E; border-bottom: 1px solid #2A2A2E; padding: 26px 0; overflow: hidden; direction: ltr">
+<div class="rq-track" style="display: flex; gap: 56px; width: max-content; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 44px; white-space: nowrap; direction: rtl">
+<span>تصميم واجهات</span><span style="color: #C8F04A">✳</span><span style="color: transparent; -webkit-text-stroke: 1px #F2EFE8">تجربة المستخدم</span><span style="color: #C8F04A">✳</span><span>هويات بصرية</span><span style="color: #C8F04A">✳</span><span style="color: transparent; -webkit-text-stroke: 1px #F2EFE8">تصميم عربي RTL</span><span style="color: #C8F04A">✳</span><span>بناء بالذكاء الاصطناعي</span><span style="color: #C8F04A">✳</span>
+<span>تصميم واجهات</span><span style="color: #C8F04A">✳</span><span style="color: transparent; -webkit-text-stroke: 1px #F2EFE8">تجربة المستخدم</span><span style="color: #C8F04A">✳</span><span>هويات بصرية</span><span style="color: #C8F04A">✳</span><span style="color: transparent; -webkit-text-stroke: 1px #F2EFE8">تصميم عربي RTL</span><span style="color: #C8F04A">✳</span><span>بناء بالذكاء الاصطناعي</span><span style="color: #C8F04A">✳</span>
+</div>
+</div>
+
+<section id="work" style="max-width: 1360px; margin: 0 auto; padding: 140px 40px 60px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; margin-bottom: 64px">
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(44px, 6vw, 96px); line-height: 1.05; letter-spacing: -1px">أعمال<br><span style="font-weight: 300; color: #C9C6BF">مختارة</span></h2>
+<p style="margin: 0; max-width: 380px; color: #A3A3A8">كل مشروع هنا قصة كاملة: المشكلة، القرارات، والنتيجة. اضغط على أي مشروع لقراءة دراسة الحالة.</p>
+</div>
+
+<a class="rq-card" href="#manara" style="display: block; text-decoration: none; color: #F2EFE8">
+<div style="border-radius: 32px; overflow: hidden; background: #0B2238; position: relative">
+<div class="rq-media" aria-hidden="true" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); min-height: 560px">
+<div style="padding: 56px; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; background: #F1ECE3; color: #0B2238">
+<img src="img/logo_full.png" alt="" style="height: 110px; width: auto; align-self: flex-start; display: block">
+<p style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(44px, 5vw, 76px); line-height: 1.12">بيتٌ يُرى<br>من <span style="color: #10446E">بعيد</span>.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #FAF7F1; border-radius: 18px; overflow: hidden; font-size: 13px; max-width: 520px"><span style="padding: 14px 16px; border-left: 1px solid #E2DACB">المساحات<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 20px">110–150 م²</b></span><span style="padding: 14px 16px; border-left: 1px solid #E2DACB">سعر المتر<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 20px">275–350 $</b></span><span style="padding: 14px 16px">الملكية<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 20px">طابو أخضر</b></span></div>
+</div>
+<div style="min-height: 420px; position: relative; overflow: hidden"><img src="img/wide.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block"></div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; padding: 32px 8px 0">
+<div>
+<p style="margin: 0 0 6px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: #8E8E94">01 — عميل حقيقي · شعار + موقع عقاري · تصوير · 2026</p>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.2">منارة الأشرفية: <span style="font-weight: 300; color: #C9C6BF">موقع لمشروع سكني حقيقي، من موقع البناء إلى الشاشة</span></h3>
+</div>
+<span class="rq-go" style="display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid #F2EFE8; font-size: 26px; transition: background .3s, color .3s" aria-hidden="true">←</span>
+</div>
+</a>
+
+<a class="rq-card" href="#siraj" style="display: block; text-decoration: none; color: #F2EFE8; margin-top: 120px">
+<div style="border-radius: 32px; overflow: hidden; background: #0E3B2E; position: relative">
+<div class="rq-media" aria-hidden="true" style="padding: 72px 40px 0; display: flex; justify-content: center; align-items: flex-end; gap: 36px; min-height: 560px; flex-wrap: wrap">
+<div style="width: 260px; height: 500px; border-radius: 42px 42px 0 0; background: #061F18; padding: 10px 10px 0; box-shadow: 0 -20px 60px rgba(0,0,0,0.4)">
+<div style="height: 100%; border-radius: 34px 34px 0 0; overflow: hidden; background: #F6EFE2; padding: 34px 20px 0; color: #12241D">
+<p style="margin: 0; font-size: 12px; color: #5B6B63">مساء الخير، رؤى</p>
+<p style="margin: 4px 0 18px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 22px">أكمل القراءة</p>
+<div style="display: flex; gap: 12px; background: #FFFFFF; border-radius: 16px; padding: 12px"><div style="width: 62px; height: 90px; border-radius: 8px; background: linear-gradient(160deg, #0E3B2E, #1F6B52)"></div><div style="flex: 1"><p style="margin: 0; font-weight: 600; font-size: 14px">طوق الحمامة</p><p style="margin: 2px 0 10px; font-size: 11px; color: #5B6B63">ابن حزم</p><div style="height: 5px; border-radius: 3px; background: #E8DFCD"><div style="width: 64%; height: 100%; border-radius: 3px; background: #E3A33B"></div></div><p style="margin: 6px 0 0; font-size: 11px; color: #5B6B63">64% · بقي 40 دقيقة</p></div></div>
+<p style="margin: 22px 0 10px; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 15px">مختارات اليوم</p>
+<div style="display: flex; gap: 10px"><div style="width: 70px; height: 100px; border-radius: 8px; background: linear-gradient(160deg, #E3A33B, #B9761A)"></div><div style="width: 70px; height: 100px; border-radius: 8px; background: linear-gradient(160deg, #3C2F5C, #6A5794)"></div><div style="width: 70px; height: 100px; border-radius: 8px; background: linear-gradient(160deg, #8E3B2E, #C2624E)"></div></div>
+</div>
+</div>
+<div style="width: 260px; height: 540px; border-radius: 42px 42px 0 0; background: #061F18; padding: 10px 10px 0; box-shadow: 0 -20px 60px rgba(0,0,0,0.4)">
+<div style="height: 100%; border-radius: 34px 34px 0 0; overflow: hidden; background: #12241D; padding: 40px 22px 0; color: #F6EFE2; text-align: center">
+<div style="width: 170px; height: 170px; margin: 0 auto; border-radius: 22px; background: linear-gradient(160deg, #E3A33B, #B9761A); box-shadow: 0 20px 40px rgba(227,163,59,0.25)"></div>
+<p style="margin: 24px 0 2px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 20px">مقدّمة ابن خلدون</p>
+<p style="margin: 0; font-size: 12px; color: #A9B8B0">الفصل الثالث · بصوت سامر</p>
+<div style="margin: 22px 0 6px; height: 4px; border-radius: 2px; background: #2B4A3E"><div style="width: 38%; height: 100%; background: #E3A33B; border-radius: 2px"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 10px; color: #A9B8B0; direction: ltr"><span>14:02</span><span>36:40</span></div>
+<div style="margin-top: 22px; display: flex; justify-content: center; align-items: center; gap: 26px"><span style="width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #A9B8B0"></span><span style="width: 62px; height: 62px; border-radius: 50%; background: #E3A33B"></span><span style="width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #A9B8B0"></span></div>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; padding: 32px 8px 0">
+<div>
+<p style="margin: 0 0 6px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: #8E8E94">02 — تطبيق موبايل · هوية + UI/UX · مشروع مفهومي</p>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.2">سِراج: <span style="font-weight: 300; color: #C9C6BF">تطبيق قراءة يعيد للكتاب العربي متعته</span></h3>
+</div>
+<span class="rq-go" style="display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid #F2EFE8; font-size: 26px; transition: background .3s, color .3s" aria-hidden="true">←</span>
+</div>
+</a>
+</section>
+
+<section id="services" style="max-width: 1360px; margin: 0 auto; padding: 120px 40px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; margin-bottom: 56px; align-items: end">
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(44px, 6vw, 96px); line-height: 1.05; letter-spacing: -1px">ماذا<br><span style="font-weight: 300; color: #C9C6BF">أقدّم</span></h2>
+<p style="margin: 0; color: #A3A3A8; font-size: 18px; max-width: 480px">مصممة تعرف كيف يُبنى ما ترسمه. هذا يعني تصاميم قابلة للتنفيذ من اليوم الأول، وتسليماً أسرع، وفجوة أصغر بين الفكرة والمنتج.</p>
+</div>
+<div style="border-top: 1px solid #2A2A2E">
+<div class="rq-row" style="display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 36px 24px; border-bottom: 1px solid #2A2A2E">
+<span class="rq-muted" style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">01</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px)">تصميم المواقع والتطبيقات</h3>
+<p class="rq-muted" style="margin: 0; color: #A3A3A8">من بحث المستخدم وهيكل الصفحات إلى شاشات نهائية دقيقة، جاهزة للمطوّرين أو للبناء مباشرة.</p>
+</div>
+<div class="rq-row" style="display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 36px 24px; border-bottom: 1px solid #2A2A2E">
+<span class="rq-muted" style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">02</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px)">الهوية البصرية وأنظمة التصميم</h3>
+<p class="rq-muted" style="margin: 0; color: #A3A3A8">ألوان وخطوط ومكوّنات موحّدة تجعل العلامة متّسقة في كل شاشة، ويسهل على الفريق البناء عليها.</p>
+</div>
+<div class="rq-row" style="display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 36px 24px; border-bottom: 1px solid #2A2A2E">
+<span class="rq-muted" style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">03</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px)">تعريب التجارب الرقمية</h3>
+<p class="rq-muted" style="margin: 0; color: #A3A3A8">تحويل المنتجات العالمية إلى تجربة عربية حقيقية من اليمين إلى اليسار، لا مجرد ترجمة للنصوص.</p>
+</div>
+<div class="rq-row" style="display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 36px 24px; border-bottom: 1px solid #2A2A2E">
+<span class="rq-muted" style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">04</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px)">من التصميم إلى موقع يعمل</h3>
+<p class="rq-muted" style="margin: 0; color: #A3A3A8">بناء الواجهات بالكود وأدوات الذكاء الاصطناعي، وتسليم موقع منشور ومتجاوب بدل ملفات صور.</p>
+</div>
+</div>
+</section>
+
+<section id="about" style="background: #F2EFE8; color: #0A0A0B">
+<div style="max-width: 1360px; margin: 0 auto; padding: 140px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px">
+<div>
+<p style="margin: 0 0 24px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: #5A5A60">عنّي</p>
+<p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 600; font-size: clamp(30px, 3.4vw, 50px); line-height: 1.35">مصممة <span style="background: #C8F04A; padding: 0 10px; border-radius: 8px">تفكّر كمهندسة</span>. كل شاشة أرسمها قابلة للبناء، وكل قرار بصري له سبب.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px; font-size: 18px; color: #3A3A40">
+<p style="margin: 0">أدرس هندسة المعلوماتية في جامعة دمشق، وأعمل على المساحة التي يلتقي فيها التصميم بالتقنية: أفهم المستخدم، أصمّم له، ثم أبني ما صمّمته.</p>
+<p style="margin: 0">أستخدم الذكاء الاصطناعي شريكاً في العمل لأختصر الطريق من الفكرة إلى المنتج، مع عين دقيقة على التفاصيل التي تصنع الفرق، خصوصاً في الخط العربي واتجاه القراءة.</p>
+<dl style="margin: 12px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; border-top: 1px solid #C9C5BB">
+<div style="padding: 20px 0; border-bottom: 1px solid #C9C5BB"><dt style="font-size: 13px; color: #5A5A60">التصميم</dt><dd style="margin: 4px 0 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: #0A0A0B">Figma · Canva · Adobe</dd></div>
+<div style="padding: 20px 0; border-bottom: 1px solid #C9C5BB"><dt style="font-size: 13px; color: #5A5A60">البناء</dt><dd style="margin: 4px 0 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: #0A0A0B">Lovable · Claude Code</dd></div>
+<div style="padding: 20px 0; border-bottom: 1px solid #C9C5BB"><dt style="font-size: 13px; color: #5A5A60">البرمجة</dt><dd style="margin: 4px 0 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: #0A0A0B">Java · C++ · HTML/CSS</dd></div>
+<div style="padding: 20px 0; border-bottom: 1px solid #C9C5BB"><dt style="font-size: 13px; color: #5A5A60">التعليم</dt><dd style="margin: 4px 0 0; font-weight: 500; color: #0A0A0B">هندسة المعلوماتية، جامعة دمشق</dd></div>
+</dl>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 140px 40px 100px">
+<p style="margin: 0 0 48px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: #8E8E94">طريقة العمل</p>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px">
+<li style="padding: 32px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2E; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: #C8F04A">01</span><div><h3 style="margin: 0 0 6px; font-family: Alexandria, sans-serif; font-size: 22px">نفهم</h3><p style="margin: 0; color: #A3A3A8">المستخدم، الهدف، والمنافسين قبل أي خط.</p></div></li>
+<li style="padding: 32px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2E; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: #C8F04A">02</span><div><h3 style="margin: 0 0 6px; font-family: Alexandria, sans-serif; font-size: 22px">نصمّم</h3><p style="margin: 0; color: #A3A3A8">الهيكل أولاً، ثم الهوية والشاشات النهائية.</p></div></li>
+<li style="padding: 32px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2E; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: #C8F04A">03</span><div><h3 style="margin: 0 0 6px; font-family: Alexandria, sans-serif; font-size: 22px">نبني</h3><p style="margin: 0; color: #A3A3A8">موقع متجاوب يعمل على كل الشاشات.</p></div></li>
+<li style="padding: 32px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2E; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: #C8F04A">04</span><div><h3 style="margin: 0 0 6px; font-family: Alexandria, sans-serif; font-size: 22px">نُطلق</h3><p style="margin: 0; color: #A3A3A8">نشر، تسليم منظّم، ودعم بعد الإطلاق.</p></div></li>
+</ol>
+</section>
+
+<section id="contact" style="max-width: 1360px; margin: 0 auto; padding: 80px 40px 48px">
+<div style="border-radius: 40px; background: #C8F04A; color: #0A0A0B; padding: clamp(40px, 7vw, 110px)">
+<p style="margin: 0 0 24px; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 500">لنعمل معاً</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(48px, 8.6vw, 140px); line-height: 1.02; letter-spacing: -2px">عندك فكرة؟<br>لنجعلها تُرى.</h2>
+<div style="margin-top: 56px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<a href="mailto:roaa.ib06@gmail.com" style="display: inline-flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 34px; border-radius: 999px; background: #0A0A0B; color: #F2EFE8; text-decoration: none; font-weight: 600; font-size: 19px; font-family: 'Space Grotesk', 'IBM Plex Sans Arabic', sans-serif">roaa.ib06@gmail.com <span aria-hidden="true">←</span></a>
+<a href="https://github.com/roaaib06-boop" style="display: inline-flex; align-items: center; gap: 10px; min-height: 64px; padding: 0 28px; border-radius: 999px; border: 1.5px solid #0A0A0B; color: #0A0A0B; text-decoration: none; font-weight: 600; font-size: 17px; font-family: 'Space Grotesk', sans-serif"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#0A0A0B"><path d="M12 .5a11.5 11.5 0 00-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0012 .5z"/></svg>GitHub</a>
+</div>
+</div>
+<footer style="margin-top: 48px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 14px; color: #8E8E94">
+<span>© 2026 رؤى إبراهيم</span>
+<span>صُمّم وبُني بالعربية، من اليمين إلى اليسار.</span>
+<a href="#top" style="color: #F2EFE8">العودة للأعلى ↑</a>
+</footer>
+</section>
+
+</div>
+</main>
+<main class="view" data-route="manara" data-lang="ar" lang="ar" dir="rtl" data-title="منارة الأشرفية — دراسة حالة | رؤى إبراهيم" style="background:#0A0A0B" hidden>
+<div dir="rtl" style="font-family: 'Readex Pro', system-ui, sans-serif; color: #FAF7F1; background: #0A0A0B; width: 100%; line-height: 1.75; overflow: hidden">
+
+<section style="background: #0B2238; position: relative">
+<div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px 0; position: relative">
+<nav aria-label="تنقّل" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center">
+<a href="#home" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px; border: 1px solid #23415D; border-radius: 999px; text-decoration: none; font-size: 15px"><span aria-hidden="true">→</span> كل الأعمال</a>
+<a href="#home" aria-label="رؤى إبراهيم — الصفحة الرئيسية" style="width: 48px; height: 48px; border-radius: 50%; background: #C8F04A; color: #0A0A0B; display: inline-flex; align-items: center; justify-content: center; font-family: Alexandria, sans-serif; font-weight: 900; font-size: 24px; text-decoration: none">ر</a>
+</nav>
+<div style="padding: 90px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap: 56px; align-items: end">
+<div>
+<p style="margin: 0 0 20px; display: inline-flex; gap: 10px; align-items: center; padding: 8px 18px; border-radius: 999px; background: rgba(158,195,224,0.14); font-size: 14px; color: #C9DDED"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #C8F04A"></span>دراسة حالة 01 · عميل حقيقي</p>
+<h1 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(64px, 9vw, 144px); line-height: 1.05">منارة<br><span style="color: #9EC3E0">الأشرفية</span></h1>
+<p style="margin: 26px 0 0; font-size: 22px; color: #C9D5DF; max-width: 560px">هوية وموقع لمشروع أبنية سكنية حقيقي في أشرفية صحنايا: صمّمتُ الشعار، وصوّرتُ المشروع أثناء البناء، وبنيتُ موقعاً جاهزاً للنشر.</p>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-bottom: 8px">
+<div><dt style="font-size: 13px; color: #9EC3E0">العميل</dt><dd style="margin: 4px 0 0">م. مصطفى إبراهيم</dd></div>
+<div><dt style="font-size: 13px; color: #9EC3E0">دوري</dt><dd style="margin: 4px 0 0">الشعار، التصوير، UX/UI</dd></div>
+<div><dt style="font-size: 13px; color: #9EC3E0">المخرجات</dt><dd style="margin: 4px 0 0">شعار + موقع متجاوب</dd></div>
+<div><dt style="font-size: 13px; color: #9EC3E0">السنة</dt><dd style="margin: 4px 0 0; font-family: 'Space Grotesk', sans-serif">2026</dd></div>
+</dl>
+</div>
+
+<a href="#manara-site" aria-label="افتح موقع منارة الأشرفية" style="display: block; margin-top: 80px; border-radius: 26px 26px 0 0; overflow: hidden; background: #F1ECE3; text-decoration: none; color: #0B2238; box-shadow: 0 -30px 90px rgba(0,0,0,0.45)">
+<div aria-hidden="true">
+<div style="background: #FAF7F1; padding: 12px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2DACB"><img src="img/logo_full.png" alt="" style="height: 50px; width: auto; display: block"><span style="display: flex; gap: 26px; font-size: 13px"><span>الشقق</span><span>الموقع</span><span>من موقع البناء</span><span>تواصل</span></span><span style="padding: 8px 18px; border-radius: 999px; background: #10446E; color: #FAF7F1; font-size: 12px">واتساب</span></div>
+<div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; padding: 44px 40px 0; align-items: end">
+<div style="padding-bottom: 48px">
+<p style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 76px; line-height: 1.12">بيتٌ يُرى<br>من <span style="color: #10446E">بعيد</span>.</p>
+<div style="margin-top: 26px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #FAF7F1; border-radius: 18px; overflow: hidden; max-width: 520px; font-size: 12px"><span style="padding: 14px 16px; border-left: 1px solid #E2DACB">المساحات<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 19px">110–150 م²</b></span><span style="padding: 14px 16px; border-left: 1px solid #E2DACB">سعر المتر<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 19px">275–350 $</b></span><span style="padding: 14px 16px">الملكية<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 19px">طابو أخضر</b></span></div>
+</div>
+<div style="height: 460px; border-radius: 999px 999px 0 0; overflow: hidden"><img src="img/hero.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+</div>
+</div>
+</a>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 140px 40px 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9EC3E0; font-weight: 700">01 — نقطة البداية</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">مشروع حقيقي، تسوّقه صورة ومنشور واتساب.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 22px; font-size: 19px; color: #C9C6BF">
+<p style="margin: 0">كان المشروع يُعرَّف بمنشورات صور جاهزة تحمل المعلومات نفسها: المساحات، والأسعار، والمسافات. معلومات قوية، لكنها مبعثرة ولا تبني ثقة تليق بمشروع منجز.</p>
+<p style="margin: 0"><strong style="color: #FAF7F1">الهدف:</strong> موقع واحد يجمع كل شيء بوضوح، ويحوّل "بيعت معظم الشقق" من نهاية إلى دليل مصداقية يدفع المتردّد إلى التواصل الآن.</p>
+</div>
+</section>
+
+<section aria-label="من موقع البناء" style="max-width: 1360px; margin: 0 auto; padding: 0 40px 120px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px">
+<figure style="margin: 0; grid-column: span 2; height: 440px; border-radius: 24px; overflow: hidden; min-width: 0"><img src="img/wide.jpg" alt="المشروع من زاوية الشارع مع أشجار السرو" style="width: 100%; height: 100%; object-fit: cover; display: block"></figure>
+<figure style="margin: 0; height: 440px; border-radius: 24px; overflow: hidden"><img src="img/balcony.jpg" alt="شرفات أحد الأبنية" style="width: 100%; height: 100%; object-fit: cover; display: block"></figure>
+</div>
+<p style="margin: 18px 0 0; color: #8E8E94">صوّرتُ المشروع بنفسي أثناء البناء، ثم عالجتُ الصور لونياً وقصصتها لتعمل داخل الموقع.</p>
+</section>
+
+<section style="background: #F1ECE3; color: #0B2238">
+<div style="max-width: 1360px; margin: 0 auto; padding: 130px 40px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #10446E; font-weight: 700">02 — الشعار والهوية</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 64px; align-items: center">
+<div style="padding: 48px; border-radius: 28px; background: #FAF7F1; display: flex; justify-content: center"><img src="img/logo_full.png" alt="شعار منارة الأشرفية" style="height: 260px; width: auto; display: block"></div>
+<div>
+<h2 style="margin: 0 0 16px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.25">منارة داخل قوس، تُضيء الأبنية.</h2>
+<p style="margin: 0 0 16px; font-size: 19px; color: #46525C">صمّمتُ الشعار ليحكي الاسم بصرياً: قوس شرقي يحتضن المشهد، وفي داخله منارة يخرج منها شعاع ضوء، وتحتها أبنية بخطوط عمودية تشبه أبنية المشروع نفسها. والاسم بخط كوفي عريض يتناغم مع خطوط الأبنية.</p>
+<p style="margin: 0; font-size: 19px; color: #46525C">الأزرق العميق يعطي إحساس الثقة والاستقرار، وفي الموقع أضفتُ إليه لون الحجر الكلسي من واجهات الأبنية في صوري، وجعلتُ قوس الشعار إطاراً للصورة الرئيسية.</p>
+</div>
+</div>
+<div style="margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 14px">
+<div style="border-radius: 24px; background: #10446E; color: #FAF7F1; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600">أزرق المنارة</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif; color: #C9D5DF">#10446E</p></div>
+<div style="border-radius: 24px; background: #0B2238; color: #FAF7F1; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600">ليل</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif; color: #C9D5DF">#0B2238</p></div>
+<div style="border-radius: 24px; background: #F1ECE3; color: #0B2238; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid #D8CFBF"><p style="margin: 0; font-weight: 600">حجر كلسي</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif">#F1ECE3</p></div>
+<div style="border-radius: 24px; background: #9EC3E0; color: #0B2238; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600">سماء</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif">#9EC3E0</p></div>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 130px 40px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9EC3E0; font-weight: 700">03 — القرارات التصميمية</p>
+<h2 style="margin: 0 0 56px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2; max-width: 980px">ما استلهمته من مواقع المطوّرين العقاريين المحترفين.</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px">
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E"><p style="margin: 0 0 18px; font-family: 'Space Grotesk', sans-serif; font-size: 40px; color: #9EC3E0">01</p><h3 style="margin: 0 0 8px; font-family: Alexandria, sans-serif; font-size: 24px">الأرقام أولاً</h3><p style="margin: 0; color: #C9C6BF">المساحة وسعر المتر ونوع الملكية تظهر في أول شاشة، لأنها الأسئلة الثلاثة التي يسألها كل مشترٍ قبل أي شيء.</p></div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E"><p style="margin: 0 0 18px; font-family: 'Space Grotesk', sans-serif; font-size: 40px; color: #9EC3E0">02</p><h3 style="margin: 0 0 8px; font-family: Alexandria, sans-serif; font-size: 24px">الموقع بالأمتار</h3><p style="margin: 0; color: #C9C6BF">بدل عبارة "موقع مميّز"، قائمة دقيقة: 100 م عن الاتستراد، 300 م عن الجامع، 400 م عن المدينة الرياضية، وإطلالة على المدرسة بصورتها.</p></div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E"><p style="margin: 0 0 18px; font-family: 'Space Grotesk', sans-serif; font-size: 40px; color: #9EC3E0">03</p><h3 style="margin: 0 0 8px; font-family: Alexandria, sans-serif; font-size: 24px">الندرة تُقنع</h3><p style="margin: 0; color: #C9C6BF">"بيعت معظم الشقق. تواصل قبل أن تنتهي." الحالة الحقيقية للمشروع صارت دعوة واضحة للتواصل عبر واتساب أو طلب اتصال.</p></div>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 130px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 72px; align-items: center">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9EC3E0; font-weight: 700">04 — على الهاتف</p>
+<h2 style="margin: 0 0 22px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">من يبحث عن بيت، يبحث من هاتفه.</h2>
+<p style="margin: 0; font-size: 19px; color: #C9C6BF">الصورة في إطار القوس أعلى الشاشة، والأرقام الثلاثة تحتها مباشرة، وزر واتساب في متناول الإبهام في كل لحظة.</p>
+</div>
+<div aria-hidden="true" style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap">
+<div style="width: 250px; height: 520px; border-radius: 40px; background: #23415D; padding: 10px; box-shadow: 0 30px 70px rgba(0,0,0,0.5)">
+<div style="height: 100%; border-radius: 32px; overflow: hidden; background: #F1ECE3; color: #0B2238; padding: 22px 14px 0">
+<img src="img/logo_full.png" alt="" style="height: 40px; width: auto; display: block">
+<div style="margin-top: 14px; height: 230px; border-radius: 999px 999px 16px 16px; overflow: hidden"><img src="img/hero.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+<p style="margin: 14px 0 8px; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.15">بيتٌ يُرى من <span style="color: #10446E">بعيد</span>.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; font-size: 10px; text-align: center"><span style="padding: 6px 0; border-radius: 8px; background: #FAF7F1"><b style="display: block; font-size: 12px">110–150</b>م²</span><span style="padding: 6px 0; border-radius: 8px; background: #FAF7F1"><b style="display: block; font-size: 12px">275–350$</b>للمتر</span><span style="padding: 6px 0; border-radius: 8px; background: #FAF7F1"><b style="display: block; font-size: 12px">طابو</b>أخضر</span></div>
+</div>
+</div>
+<div style="width: 250px; height: 520px; border-radius: 40px; background: #23415D; padding: 10px; box-shadow: 0 30px 70px rgba(0,0,0,0.5); margin-top: 48px">
+<div style="height: 100%; border-radius: 32px; overflow: hidden; background: #0B2238; color: #FAF7F1; padding: 26px 16px 0; position: relative">
+<p style="margin: 0; color: #9EC3E0; font-size: 12px">الموقع</p>
+<p style="margin: 4px 0 14px; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.2">كل ما تحتاجه، على بُعد خطوات.</p>
+<div style="display: grid; gap: 0; font-size: 13px; border-top: 1px solid #23415D"><span style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #23415D">الاتستراد<b style="color: #9EC3E0">100 م</b></span><span style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #23415D">جامع<b style="color: #9EC3E0">300 م</b></span><span style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #23415D">مدينة رياضية<b style="color: #9EC3E0">400 م</b></span><span style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #23415D">دمشق<b style="color: #9EC3E0">10 كم</b></span></div>
+<div style="margin-top: 14px; height: 110px; border-radius: 14px; overflow: hidden"><img src="img/school.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+<div style="position: absolute; bottom: 14px; left: 14px; right: 14px; padding: 13px 0; border-radius: 999px; background: #FAF7F1; color: #0B2238; text-align: center; font-size: 13px; font-weight: 600">واتساب</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 130px">
+<div style="border-radius: 32px; background: #141416; border: 1px solid #2A2A2E; padding: clamp(36px, 5vw, 72px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 56px">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9EC3E0; font-weight: 700">05 — الخلاصة</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.25">من منشورات متفرّقة، إلى موقع يبني الثقة.</h2>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; font-size: 18px; color: #C9C6BF">
+<li style="display: flex; gap: 14px"><span aria-hidden="true" style="color: #9EC3E0">✦</span>كل معلومات المشروع الحقيقية في مكان واحد، مرتّبة حسب أسئلة المشتري.</li>
+<li style="display: flex; gap: 14px"><span aria-hidden="true" style="color: #9EC3E0">✦</span>صور حقيقية التقطتها وعالجتها بنفسي بدل صور جاهزة.</li>
+<li style="display: flex; gap: 14px"><span aria-hidden="true" style="color: #9EC3E0">✦</span>شعار صمّمته يحكي الاسم: قوس، ومنارة، وأبنية.</li>
+<li style="display: flex; gap: 14px"><span aria-hidden="true" style="color: #9EC3E0">✦</span>طريق مباشر إلى التواصل: واتساب وطلب اتصال من كل قسم.</li>
+</ul>
+</div>
+</section>
+
+<a href="#siraj" style="display: block; text-decoration: none; color: #0A0A0B; background: #C8F04A">
+<div style="max-width: 1360px; margin: 0 auto; padding: 90px 40px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center">
+<div><p style="margin: 0 0 8px; font-size: 15px">المشروع التالي</p><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 1.05">سِراج</p></div>
+<span aria-hidden="true" style="font-size: 64px">←</span>
+</div>
+</a>
+
+</div>
+</main>
+<main class="view" data-route="siraj" data-lang="ar" lang="ar" dir="rtl" data-title="سِراج — دراسة حالة | رؤى إبراهيم" style="background:#0A0A0B" hidden>
+<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; color: #F6EFE2; background: #0A0A0B; width: 100%; line-height: 1.75; overflow: hidden">
+
+<section style="background: #0E3B2E; position: relative">
+<div class="sj-glow" aria-hidden="true" style="position: absolute; top: 120px; left: 50%; margin-left: -380px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(227,163,59,0.28) 0%, rgba(14,59,46,0) 62%)"></div>
+<div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px 0; position: relative">
+<nav aria-label="تنقّل" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center">
+<a href="#home" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px; border: 1px solid #3A6B5A; border-radius: 999px; text-decoration: none; font-size: 15px"><span aria-hidden="true">→</span> كل الأعمال</a>
+<a href="#home" aria-label="رؤى إبراهيم — الصفحة الرئيسية" style="width: 48px; height: 48px; border-radius: 50%; background: #C8F04A; color: #0A0A0B; display: inline-flex; align-items: center; justify-content: center; font-family: Alexandria, sans-serif; font-weight: 900; font-size: 24px; text-decoration: none">ر</a>
+</nav>
+<div style="text-align: center; padding: 96px 0 0">
+<p style="margin: 0 0 20px; display: inline-flex; gap: 10px; align-items: center; padding: 8px 18px; border: 1px solid #3A6B5A; border-radius: 999px; font-size: 14px; color: #CFE0D7">دراسة حالة 02 · مشروع مفهومي ذاتي</p>
+<div aria-hidden="true" style="margin: 0 auto 8px; width: 64px; height: 84px; position: relative">
+<div style="position: absolute; bottom: 0; left: 4px; width: 56px; height: 28px; border-radius: 0 0 28px 28px; background: #E3A33B"></div>
+<div style="position: absolute; top: 4px; left: 20px; width: 24px; height: 40px; border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; background: #F6EFE2"></div>
+</div>
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(80px, 13vw, 210px); line-height: 1; letter-spacing: -3px">سِراج</h1>
+<p style="margin: 24px auto 0; max-width: 680px; font-size: 22px; color: #CFE0D7">تطبيق قراءة وكتب صوتية عربي، صُمّم ليجعل القراءة بالعربية مريحة وجميلة كما ينبغي لها أن تكون.</p>
+</div>
+
+<div aria-hidden="true" style="margin-top: 80px; display: flex; justify-content: center; align-items: flex-end; gap: 32px; flex-wrap: wrap">
+
+<div style="width: 280px; height: 560px; border-radius: 46px 46px 0 0; background: #061F18; padding: 11px 11px 0; box-shadow: 0 -30px 80px rgba(0,0,0,0.35)">
+<div style="height: 100%; border-radius: 36px 36px 0 0; overflow: hidden; background: #F6EFE2; padding: 40px 22px 0; color: #12241D">
+<p style="margin: 0; font-size: 13px; color: #5B6B63">مساء الخير، رؤى</p>
+<p style="margin: 2px 0 18px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 24px">أكمل القراءة</p>
+<div style="display: flex; gap: 12px; background: #FFFFFF; border-radius: 18px; padding: 12px"><div style="width: 66px; height: 96px; border-radius: 8px; background: linear-gradient(160deg, #0E3B2E, #1F6B52)"></div><div style="flex: 1"><p style="margin: 0; font-weight: 600; font-size: 15px">طوق الحمامة</p><p style="margin: 0 0 12px; font-size: 12px; color: #5B6B63">ابن حزم الأندلسي</p><div style="height: 5px; border-radius: 3px; background: #E8DFCD"><div style="width: 64%; height: 100%; border-radius: 3px; background: #E3A33B"></div></div><p style="margin: 6px 0 0; font-size: 11px; color: #5B6B63">64% · بقي 40 دقيقة</p></div></div>
+<div style="margin-top: 18px; padding: 14px 16px; border-radius: 18px; background: #0E3B2E; color: #F6EFE2; display: flex; justify-content: space-between; align-items: center"><div><p style="margin: 0; font-size: 12px; color: #CFE0D7">هدف اليوم</p><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 18px">18 من 30 دقيقة</p></div><div style="width: 46px; height: 46px; border-radius: 50%; border: 5px solid #2B5E4C; border-top-color: #E3A33B; border-left-color: #E3A33B"></div></div>
+<p style="margin: 20px 0 10px; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">مختارات لك</p>
+<div style="display: flex; gap: 10px"><div style="width: 74px; height: 106px; border-radius: 8px; background: linear-gradient(160deg, #E3A33B, #B9761A)"></div><div style="width: 74px; height: 106px; border-radius: 8px; background: linear-gradient(160deg, #3C2F5C, #6A5794)"></div><div style="width: 74px; height: 106px; border-radius: 8px; background: linear-gradient(160deg, #8E3B2E, #C2624E)"></div></div>
+</div>
+</div>
+
+<div style="width: 300px; height: 620px; border-radius: 48px 48px 0 0; background: #061F18; padding: 11px 11px 0; box-shadow: 0 -30px 80px rgba(0,0,0,0.35)">
+<div style="height: 100%; border-radius: 38px 38px 0 0; overflow: hidden; background: #FBF6EC; padding: 40px 26px 0; color: #12241D">
+<div style="display: flex; justify-content: space-between; font-size: 12px; color: #5B6B63"><span>ديوان المتنبي</span><span>ص 112</span></div>
+<p style="margin: 40px 0 0; font-family: Amiri, serif; font-size: 25px; line-height: 2.1; text-align: center">الخَيْلُ وَاللّيْلُ وَالبَيْداءُ تَعرِفُني<br>وَالسّيفُ وَالرّمحُ والقرْطاسُ وَالقَلَمُ</p>
+<div style="margin: 34px auto 0; width: 40px; height: 2px; background: #E3A33B"></div>
+<div style="margin-top: 40px; padding: 14px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 10px 30px rgba(18,36,29,0.08)">
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px"><span style="font-weight: 600">حجم الخط</span><span style="font-family: Amiri, serif; font-size: 18px">أ <span style="font-size: 26px">أ</span></span></div>
+<div style="margin-top: 10px; height: 4px; border-radius: 2px; background: #E8DFCD"><div style="width: 60%; height: 100%; background: #0E3B2E; border-radius: 2px"></div></div>
+<div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 13px"><span style="font-weight: 600">إظهار التشكيل</span><span style="width: 40px; height: 24px; border-radius: 12px; background: #0E3B2E; position: relative; display: inline-block"><span style="position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #E3A33B"></span></span></div>
+</div>
+</div>
+</div>
+
+<div style="width: 280px; height: 560px; border-radius: 46px 46px 0 0; background: #061F18; padding: 11px 11px 0; box-shadow: 0 -30px 80px rgba(0,0,0,0.35)">
+<div style="height: 100%; border-radius: 36px 36px 0 0; overflow: hidden; background: #12241D; padding: 44px 24px 0; text-align: center">
+<div style="width: 180px; height: 180px; margin: 0 auto; border-radius: 24px; background: linear-gradient(160deg, #E3A33B, #B9761A); box-shadow: 0 24px 50px rgba(227,163,59,0.28)"></div>
+<p style="margin: 26px 0 2px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 21px">مقدّمة ابن خلدون</p>
+<p style="margin: 0; font-size: 12px; color: #A9B8B0">الفصل الثالث · بصوت سامر</p>
+<div style="margin: 24px 0 6px; height: 4px; border-radius: 2px; background: #2B4A3E"><div style="width: 38%; height: 100%; background: #E3A33B; border-radius: 2px"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 11px; color: #A9B8B0; direction: ltr; font-family: 'Space Grotesk', sans-serif"><span>14:02</span><span>36:40</span></div>
+<div style="margin-top: 22px; display: flex; justify-content: center; align-items: center; gap: 26px"><span style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #A9B8B0"></span><span style="width: 66px; height: 66px; border-radius: 50%; background: #E3A33B; display: inline-flex; align-items: center; justify-content: center"><span style="display: flex; gap: 5px"><span style="width: 5px; height: 20px; background: #12241D; border-radius: 2px"></span><span style="width: 5px; height: 20px; background: #12241D; border-radius: 2px"></span></span></span><span style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #A9B8B0"></span></div>
+<p style="margin: 22px 0 0; display: inline-block; padding: 8px 16px; border-radius: 999px; background: #1C3A2F; font-size: 12px; color: #F6EFE2">تابع قراءةً من حيث توقّفت ←</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 72px 40px 0">
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 32px; border-bottom: 1px solid #2A2A2E; padding-bottom: 48px">
+<div><dt style="font-size: 13px; color: #8E8E94">دوري</dt><dd style="margin: 6px 0 0; font-size: 18px">الفكرة، الهوية، UI/UX</dd></div>
+<div><dt style="font-size: 13px; color: #8E8E94">المنصّة</dt><dd style="margin: 6px 0 0; font-size: 18px">تطبيق موبايل iOS وAndroid</dd></div>
+<div><dt style="font-size: 13px; color: #8E8E94">النوع</dt><dd style="margin: 6px 0 0; font-size: 18px">مشروع مفهومي ذاتي</dd></div>
+<div><dt style="font-size: 13px; color: #8E8E94">السنة</dt><dd style="margin: 6px 0 0; font-size: 18px; font-family: 'Space Grotesk', sans-serif">2026</dd></div>
+</dl>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 120px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">01 — المشكلة</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">العربية تُقرأ على الشاشات بخطوط لم تُصمَّم لها.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 22px; font-size: 19px; color: #C9C6BF">
+<p style="margin: 0">معظم تطبيقات القراءة صُمّمت للغات اللاتينية ثم أُضيفت إليها العربية لاحقاً: أسطر متلاصقة، تشكيل يتداخل مع الحروف، وواجهات تنقلب اتجاهاتها بشكل مربك.</p>
+<p style="margin: 0"><strong style="color: #F6EFE2">فرضية التصميم:</strong> إذا صمّمنا التطبيق للحرف العربي من الأساس، وجعلنا الانتقال بين القراءة والاستماع سلساً، سيقرأ المستخدم أكثر ولمدة أطول.</p>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 120px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">02 — لمن صُمّم</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px">
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E">
+<p style="margin: 0 0 18px; font-size: 13px; color: #8E8E94">شخصية افتراضية 1</p>
+<h3 style="margin: 0 0 10px; font-family: Alexandria, sans-serif; font-size: 28px">القارئة في الطريق</h3>
+<p style="margin: 0; color: #C9C6BF">طالبة جامعية تقرأ في المواصلات على شاشة صغيرة. تحتاج نصاً مريحاً للعين، وأن تكمل من حيث توقّفت بلا بحث.</p>
+</div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E">
+<p style="margin: 0 0 18px; font-size: 13px; color: #8E8E94">شخصية افتراضية 2</p>
+<h3 style="margin: 0 0 10px; font-family: Alexandria, sans-serif; font-size: 28px">المستمع المشغول</h3>
+<p style="margin: 0; color: #C9C6BF">موظف لا يجد وقتاً للقراءة، يستمع أثناء القيادة ويريد أن يعود للنص المكتوب في المساء من النقطة نفسها.</p>
+</div>
+</div>
+</section>
+
+<section style="background: #F6EFE2; color: #12241D">
+<div style="max-width: 1360px; margin: 0 auto; padding: 130px 40px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9A6514; font-weight: 700">03 — الهوية</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 64px; align-items: center">
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">سِراج: المصباح الذي يُقرأ على ضوئه.</h2>
+<p style="margin: 0; font-size: 19px; color: #3B4A43">الاسم مستوحى من سراج الزيت القديم. الشعار يجمع شكل المصباح وشعلة من الورق، والألوان مأخوذة من لحظة القراءة ليلاً: حبر أخضر عميق، ضوء زعفراني دافئ، وورق عاجي.</p>
+</div>
+<div style="margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px">
+<div style="border-radius: 24px; background: #0E3B2E; color: #F6EFE2; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600; font-size: 18px">حبر أخضر</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif; color: #CFE0D7">#0E3B2E</p></div>
+<div style="border-radius: 24px; background: #E3A33B; color: #12241D; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600; font-size: 18px">ضوء زعفراني</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif">#E3A33B</p></div>
+<div style="border-radius: 24px; background: #FBF6EC; color: #12241D; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid #E2D8C4"><p style="margin: 0; font-weight: 600; font-size: 18px">ورق عاجي</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif">#FBF6EC</p></div>
+<div style="border-radius: 24px; background: #12241D; color: #F6EFE2; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600; font-size: 18px">ليل القراءة</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif; color: #CFE0D7">#12241D</p></div>
+</div>
+<div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 16px">
+<div style="border-radius: 24px; background: #FFFFFF; padding: 40px; border: 1px solid #E2D8C4"><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: 88px; line-height: 1.1; color: #0E3B2E">سِراج</p><p style="margin: 18px 0 0; color: #3B4A43">Alexandria للواجهة والعناوين: هندسي وحديث، يقرأ بوضوح في الأزرار والقوائم.</p></div>
+<div style="border-radius: 24px; background: #FFFFFF; padding: 40px; border: 1px solid #E2D8C4"><p style="margin: 0; font-family: Amiri, serif; font-size: 40px; line-height: 1.9; color: #12241D">وَخَيرُ جَليسٍ في الزّمانِ كِتابُ</p><p style="margin: 18px 0 0; color: #3B4A43">Amiri لنصوص الكتب: خط نسخ كلاسيكي يدعم التشكيل الكامل، ومريح للقراءة الطويلة.</p></div>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 130px 40px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">04 — القرارات التصميمية</p>
+<h2 style="margin: 0 0 56px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2; max-width: 900px">ثلاثة قرارات صنعت التجربة.</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px">
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E; display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: Amiri, serif; font-size: 64px; line-height: 1; color: #E3A33B" aria-hidden="true">أ</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-size: 24px">القارئ يتحكّم بالنص</h3>
+<p style="margin: 0; color: #C9C6BF">حجم الخط، تباعد الأسطر، وإظهار التشكيل أو إخفاؤه، في لوحة واحدة تظهر بلمسة دون مغادرة الصفحة.</p>
+</div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E; display: flex; flex-direction: column; gap: 16px">
+<svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#E3A33B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1v-6h3zM3 19a2 2 0 002 2h1v-6H3z"/></svg>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-size: 24px">قراءة واستماع، كتاب واحد</h3>
+<p style="margin: 0; color: #C9C6BF">زر واحد ينقلك من النص إلى الصوت من الجملة نفسها، والعكس. الكتاب يتذكّر أين توقّفت مهما كانت الطريقة.</p>
+</div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E; display: flex; flex-direction: column; gap: 16px">
+<svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#E3A33B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-size: 24px">أهداف صغيرة، عادة كبيرة</h3>
+<p style="margin: 0; color: #C9C6BF">هدف يومي بالدقائق لا بالصفحات، لأن الوقت أسهل في التخطيط، مع حلقة تقدّم واضحة على الشاشة الرئيسية.</p>
+</div>
+</div>
+</section>
+
+<section style="background: #0E3B2E">
+<div style="max-width: 1360px; margin: 0 auto; padding: 130px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 72px; align-items: center">
+<div aria-hidden="true" style="display: flex; justify-content: center">
+<div style="width: 320px; height: 660px; border-radius: 52px; background: #061F18; padding: 12px; box-shadow: 0 40px 90px rgba(0,0,0,0.45)">
+<div style="height: 100%; border-radius: 42px; overflow: hidden; background: #F6EFE2; padding: 48px 24px; color: #12241D">
+<p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 26px">رحلتك هذا الأسبوع</p>
+<p style="margin: 4px 0 26px; font-size: 13px; color: #5B6B63">قرأت 3 ساعات و20 دقيقة</p>
+<div style="display: flex; align-items: flex-end; gap: 12px; height: 170px; padding: 0 4px; border-bottom: 1px solid #E2D8C4">
+<div style="flex: 1; height: 45%; border-radius: 8px 8px 0 0; background: #CFE0D7"></div>
+<div style="flex: 1; height: 70%; border-radius: 8px 8px 0 0; background: #CFE0D7"></div>
+<div style="flex: 1; height: 30%; border-radius: 8px 8px 0 0; background: #CFE0D7"></div>
+<div style="flex: 1; height: 90%; border-radius: 8px 8px 0 0; background: #0E3B2E"></div>
+<div style="flex: 1; height: 60%; border-radius: 8px 8px 0 0; background: #CFE0D7"></div>
+<div style="flex: 1; height: 100%; border-radius: 8px 8px 0 0; background: #E3A33B"></div>
+<div style="flex: 1; height: 20%; border-radius: 8px 8px 0 0; background: #E8DFCD"></div>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 11px; color: #5B6B63; margin-top: 8px; padding: 0 4px"><span>سبت</span><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span></div>
+<div style="margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF"><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 26px; color: #0E3B2E">12</p><p style="margin: 0; font-size: 12px; color: #5B6B63">يوماً متتالياً</p></div>
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF"><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 26px; color: #0E3B2E">2</p><p style="margin: 0; font-size: 12px; color: #5B6B63">كتاب هذا الشهر</p></div>
+</div>
+<div style="margin-top: 16px; padding: 16px; border-radius: 16px; background: #0E3B2E; color: #F6EFE2; text-align: center; font-weight: 600">شارك إنجازك</div>
+</div>
+</div>
+</div>
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">05 — شاشة التقدّم</p>
+<h2 style="margin: 0 0 24px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">الإنجاز يُرى، فيتكرّر.</h2>
+<p style="margin: 0 0 18px; font-size: 19px; color: #CFE0D7">شاشة أسبوعية تحتفي بالتقدّم بدل أن تحاسب على التقصير: أعمدة بسيطة، يوم مميّز بالزعفراني، وسلسلة أيام متتالية تشجّع على العودة غداً.</p>
+<p style="margin: 0; font-size: 19px; color: #CFE0D7">الأسبوع يبدأ بالسبت، والأيام تُقرأ من اليمين إلى اليسار كما يقرأها المستخدم العربي في تقويمه.</p>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 130px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">06 — الخطوة التالية</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">من مفهوم إلى منتج.</h2>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 0; border-top: 1px solid #2A2A2E; font-size: 18px">
+<li style="padding: 22px 0; border-bottom: 1px solid #2A2A2E; display: flex; gap: 20px"><span style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">01</span><span>اختبار النموذج التفاعلي مع قرّاء حقيقيين لقياس راحة القراءة.</span></li>
+<li style="padding: 22px 0; border-bottom: 1px solid #2A2A2E; display: flex; gap: 20px"><span style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">02</span><span>تصميم الوضع الليلي الكامل لصفحات القراءة.</span></li>
+<li style="padding: 22px 0; border-bottom: 1px solid #2A2A2E; display: flex; gap: 20px"><span style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">03</span><span>بناء نظام تصميم يسهّل توسيع التطبيق لاحقاً.</span></li>
+</ul>
+</section>
+
+<a href="#manara" style="display: block; text-decoration: none; color: #0A0A0B; background: #C8F04A">
+<div style="max-width: 1360px; margin: 0 auto; padding: 90px 40px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center">
+<div><p style="margin: 0 0 8px; font-size: 15px">المشروع التالي</p><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 1.05">منارة الأشرفية</p></div>
+<span aria-hidden="true" style="font-size: 64px">←</span>
+</div>
+</a>
+
+</div>
+</main>
+<main class="view" data-route="en-home" data-lang="en" lang="en" dir="ltr" data-title="Roaa Ibrahim — Arabic-first UI/UX Designer & Front-end Developer" style="background:#0A0A0B" hidden>
+<div dir="ltr" style="font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; color: #F2EFE8; background: #0A0A0B; width: 100%; line-height: 1.7; overflow: hidden">
+<header style="max-width: 1360px; margin: 0 auto; padding: 28px 40px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<a href="#en-top" style="display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: #F2EFE8">
+<span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 50%; background: #C8F04A; color: #0A0A0B; display: inline-flex; align-items: center; justify-content: center; font-family: Alexandria, sans-serif; font-weight: 900; font-size: 24px">ر</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 600; font-size: 18px">Roaa Ibrahim</span>
+</a>
+<nav aria-label="Main menu" style="display: flex; flex-wrap: wrap; gap: 8px; padding: 6px; border: 1px solid #2A2A2E; border-radius: 999px; font-size: 15px">
+<a href="#en-work" style="padding: 10px 20px; border-radius: 999px; text-decoration: none">Work</a>
+<a href="#en-services" style="padding: 10px 20px; border-radius: 999px; text-decoration: none">Services</a>
+<a href="#en-about" style="padding: 10px 20px; border-radius: 999px; text-decoration: none">About</a>
+<a href="#en-contact" style="padding: 10px 20px; border-radius: 999px; text-decoration: none; background: #F2EFE8; color: #0A0A0B; font-weight: 600">Contact</a>
+</nav>
+</header>
+<section id="en-top" style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 80px; position: relative">
+<div aria-hidden="true" style="position: absolute; top: 40px; left: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(200,240,74,0.16) 0%, rgba(10,10,11,0) 65%)"></div>
+<p class="rq-rise" style="margin: 0 0 40px; display: inline-flex; gap: 12px; align-items: center; padding: 10px 18px; border: 1px solid #2A2A2E; border-radius: 999px; font-size: 14px; color: #C9C6BF; position: relative"><span aria-hidden="true" class="rq-dot" style="width: 9px; height: 9px; border-radius: 50%; background: #C8F04A; display: inline-block"></span>Available for freelance projects and remote roles</p>
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(56px, 9.6vw, 156px); line-height: 1.04; letter-spacing: -2px; position: relative">
+<span class="rq-rise rq-d1" style="display: block">Arabic-first</span>
+<span class="rq-rise rq-d2" style="display: block">digital <span style="color: #C8F04A">design,</span></span>
+<span class="rq-rise rq-d3" style="display: block; font-weight: 300; color: #C9C6BF">built in code.</span>
+</h1>
+<div style="margin-top: 72px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; align-items: end; border-top: 1px solid #2A2A2E; padding-top: 32px; position: relative">
+<p style="margin: 0; font-size: 19px; color: #C9C6BF; max-width: 460px">UI/UX designer and front-end developer. I turn ideas into websites and apps that actually work, designed right-to-left from day one for Arabic-speaking users.</p>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+<div><dt style="font-size: 13px; color: #8E8E94">Focus</dt><dd style="margin: 4px 0 0; font-weight: 500">UI/UX · Front-end</dd></div>
+<div><dt style="font-size: 13px; color: #8E8E94">Background</dt><dd style="margin: 4px 0 0; font-weight: 500">Information Engineering</dd></div>
+</dl>
+<div style="display: flex; justify-content: flex-end">
+<a href="#en-work" style="display: inline-flex; align-items: center; justify-content: center; width: 132px; height: 132px; border-radius: 50%; background: #C8F04A; color: #0A0A0B; text-decoration: none; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 17px; text-align: center; line-height: 1.3">See the<br/>work ↓</a>
+</div>
+</div>
+</section>
+<div aria-hidden="true" style="border-top: 1px solid #2A2A2E; border-bottom: 1px solid #2A2A2E; padding: 26px 0; overflow: hidden; direction: ltr">
+<div class="rq-track" style="display: flex; gap: 56px; width: max-content; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 44px; white-space: nowrap; direction: rtl">
+<span>تصميم واجهات</span><span style="color: #C8F04A">✳</span><span style="color: transparent; -webkit-text-stroke: 1px #F2EFE8">تجربة المستخدم</span><span style="color: #C8F04A">✳</span><span>هويات بصرية</span><span style="color: #C8F04A">✳</span><span style="color: transparent; -webkit-text-stroke: 1px #F2EFE8">تصميم عربي RTL</span><span style="color: #C8F04A">✳</span><span>بناء بالذكاء الاصطناعي</span><span style="color: #C8F04A">✳</span>
+<span>تصميم واجهات</span><span style="color: #C8F04A">✳</span><span style="color: transparent; -webkit-text-stroke: 1px #F2EFE8">تجربة المستخدم</span><span style="color: #C8F04A">✳</span><span>هويات بصرية</span><span style="color: #C8F04A">✳</span><span style="color: transparent; -webkit-text-stroke: 1px #F2EFE8">تصميم عربي RTL</span><span style="color: #C8F04A">✳</span><span>بناء بالذكاء الاصطناعي</span><span style="color: #C8F04A">✳</span>
+</div>
+</div>
+<section id="en-work" style="max-width: 1360px; margin: 0 auto; padding: 140px 40px 60px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; margin-bottom: 64px">
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(44px, 6vw, 96px); line-height: 1.05; letter-spacing: -1px">Selected<br/><span style="font-weight: 300; color: #C9C6BF">work</span></h2>
+<p style="margin: 0; max-width: 380px; color: #A3A3A8">Each project is a full story: the problem, the decisions, and the outcome. Open any project to read the case study.</p>
+</div>
+<a class="rq-card" href="#en-manara" style="display: block; text-decoration: none; color: #F2EFE8">
+<div style="border-radius: 32px; overflow: hidden; background: #0B2238; position: relative">
+<div aria-hidden="true" class="rq-media" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); min-height: 560px">
+<div style="padding: 56px; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; background: #F1ECE3; color: #0B2238">
+<img alt="" src="img/logo_full.png" style="height: 110px; width: auto; align-self: flex-start; display: block"/>
+<p style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(44px, 5vw, 76px); line-height: 1.12">بيتٌ يُرى<br/>من <span style="color: #10446E">بعيد</span>.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #FAF7F1; border-radius: 18px; overflow: hidden; font-size: 13px; max-width: 520px"><span style="padding: 14px 16px; border-left: 1px solid #E2DACB">المساحات<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 20px">110–150 م²</b></span><span style="padding: 14px 16px; border-left: 1px solid #E2DACB">سعر المتر<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 20px">275–350 $</b></span><span style="padding: 14px 16px">الملكية<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 20px">طابو أخضر</b></span></div>
+</div>
+<div style="min-height: 420px; position: relative; overflow: hidden"><img alt="" src="img/wide.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block"/></div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; padding: 32px 8px 0">
+<div>
+<p style="margin: 0 0 6px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: #8E8E94">01 — Real client · Logo + real-estate website · Photography · 2026</p>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.2">Manarat Al-Ashrafia: <span style="font-weight: 300; color: #C9C6BF">a real residential project, from building site to screen</span></h3>
+</div>
+<span aria-hidden="true" class="rq-go" style="display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid #F2EFE8; font-size: 26px; transition: background .3s, color .3s">→</span>
+</div>
+</a>
+<a class="rq-card" href="#en-siraj" style="display: block; text-decoration: none; color: #F2EFE8; margin-top: 120px">
+<div style="border-radius: 32px; overflow: hidden; background: #0E3B2E; position: relative">
+<div aria-hidden="true" class="rq-media" style="padding: 72px 40px 0; display: flex; justify-content: center; align-items: flex-end; gap: 36px; min-height: 560px; flex-wrap: wrap">
+<div style="width: 260px; height: 500px; border-radius: 42px 42px 0 0; background: #061F18; padding: 10px 10px 0; box-shadow: 0 -20px 60px rgba(0,0,0,0.4)">
+<div style="height: 100%; border-radius: 34px 34px 0 0; overflow: hidden; background: #F6EFE2; padding: 34px 20px 0; color: #12241D">
+<p style="margin: 0; font-size: 12px; color: #5B6B63">مساء الخير، رؤى</p>
+<p style="margin: 4px 0 18px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 22px">أكمل القراءة</p>
+<div style="display: flex; gap: 12px; background: #FFFFFF; border-radius: 16px; padding: 12px"><div style="width: 62px; height: 90px; border-radius: 8px; background: linear-gradient(160deg, #0E3B2E, #1F6B52)"></div><div style="flex: 1"><p style="margin: 0; font-weight: 600; font-size: 14px">طوق الحمامة</p><p style="margin: 2px 0 10px; font-size: 11px; color: #5B6B63">ابن حزم</p><div style="height: 5px; border-radius: 3px; background: #E8DFCD"><div style="width: 64%; height: 100%; border-radius: 3px; background: #E3A33B"></div></div><p style="margin: 6px 0 0; font-size: 11px; color: #5B6B63">64% · بقي 40 دقيقة</p></div></div>
+<p style="margin: 22px 0 10px; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 15px">مختارات اليوم</p>
+<div style="display: flex; gap: 10px"><div style="width: 70px; height: 100px; border-radius: 8px; background: linear-gradient(160deg, #E3A33B, #B9761A)"></div><div style="width: 70px; height: 100px; border-radius: 8px; background: linear-gradient(160deg, #3C2F5C, #6A5794)"></div><div style="width: 70px; height: 100px; border-radius: 8px; background: linear-gradient(160deg, #8E3B2E, #C2624E)"></div></div>
+</div>
+</div>
+<div style="width: 260px; height: 540px; border-radius: 42px 42px 0 0; background: #061F18; padding: 10px 10px 0; box-shadow: 0 -20px 60px rgba(0,0,0,0.4)">
+<div style="height: 100%; border-radius: 34px 34px 0 0; overflow: hidden; background: #12241D; padding: 40px 22px 0; color: #F6EFE2; text-align: center">
+<div style="width: 170px; height: 170px; margin: 0 auto; border-radius: 22px; background: linear-gradient(160deg, #E3A33B, #B9761A); box-shadow: 0 20px 40px rgba(227,163,59,0.25)"></div>
+<p style="margin: 24px 0 2px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 20px">مقدّمة ابن خلدون</p>
+<p style="margin: 0; font-size: 12px; color: #A9B8B0">الفصل الثالث · بصوت سامر</p>
+<div style="margin: 22px 0 6px; height: 4px; border-radius: 2px; background: #2B4A3E"><div style="width: 38%; height: 100%; background: #E3A33B; border-radius: 2px"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 10px; color: #A9B8B0; direction: ltr"><span>14:02</span><span>36:40</span></div>
+<div style="margin-top: 22px; display: flex; justify-content: center; align-items: center; gap: 26px"><span style="width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #A9B8B0"></span><span style="width: 62px; height: 62px; border-radius: 50%; background: #E3A33B"></span><span style="width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #A9B8B0"></span></div>
+</div>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; padding: 32px 8px 0">
+<div>
+<p style="margin: 0 0 6px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: #8E8E94">02 — Mobile app · Identity + UI/UX · Concept project</p>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.2">Siraj: <span style="font-weight: 300; color: #C9C6BF">a reading app that brings the joy back to Arabic books</span></h3>
+</div>
+<span aria-hidden="true" class="rq-go" style="display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid #F2EFE8; font-size: 26px; transition: background .3s, color .3s">→</span>
+</div>
+</a>
+</section>
+<section id="en-services" style="max-width: 1360px; margin: 0 auto; padding: 120px 40px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; margin-bottom: 56px; align-items: end">
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(44px, 6vw, 96px); line-height: 1.05; letter-spacing: -1px">What<br/><span style="font-weight: 300; color: #C9C6BF">I do</span></h2>
+<p style="margin: 0; color: #A3A3A8; font-size: 18px; max-width: 480px">A designer who knows how her designs get built. That means work that's ready to ship from day one, faster delivery, and a smaller gap between idea and product.</p>
+</div>
+<div style="border-top: 1px solid #2A2A2E">
+<div class="rq-row" style="display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 36px 24px; border-bottom: 1px solid #2A2A2E">
+<span class="rq-muted" style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">01</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px)">Website &amp; app design</h3>
+<p class="rq-muted" style="margin: 0; color: #A3A3A8">From user research and information architecture to polished final screens, ready for developers or for me to build.</p>
+</div>
+<div class="rq-row" style="display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 36px 24px; border-bottom: 1px solid #2A2A2E">
+<span class="rq-muted" style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">02</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px)">Brand identity &amp; design systems</h3>
+<p class="rq-muted" style="margin: 0; color: #A3A3A8">Colours, type and components that keep a brand consistent on every screen, and easy for a team to build on.</p>
+</div>
+<div class="rq-row" style="display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 36px 24px; border-bottom: 1px solid #2A2A2E">
+<span class="rq-muted" style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">03</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px)">Arabic localization</h3>
+<p class="rq-muted" style="margin: 0; color: #A3A3A8">Turning global products into genuine right-to-left Arabic experiences, not just translated text.</p>
+</div>
+<div class="rq-row" style="display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 36px 24px; border-bottom: 1px solid #2A2A2E">
+<span class="rq-muted" style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">04</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 38px)">From design to a live website</h3>
+<p class="rq-muted" style="margin: 0; color: #A3A3A8">Building interfaces with code and AI tools, and handing over a live, responsive website instead of image files.</p>
+</div>
+</div>
+</section>
+<section id="en-about" style="background: #F2EFE8; color: #0A0A0B">
+<div style="max-width: 1360px; margin: 0 auto; padding: 140px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px">
+<div>
+<p style="margin: 0 0 24px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: #5A5A60">About</p>
+<p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 600; font-size: clamp(30px, 3.4vw, 50px); line-height: 1.35">A designer <span style="background: #C8F04A; padding: 0 10px; border-radius: 8px">who thinks like an engineer</span>. Every screen I draw can be built, and every visual choice has a reason.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px; font-size: 18px; color: #3A3A40">
+<p style="margin: 0">I study Information Engineering at Damascus University and work where design meets technology: I understand the user, design for them, then build what I designed.</p>
+<p style="margin: 0">I use AI as a working partner to shorten the path from idea to product, with a careful eye on the details that make the difference, especially Arabic typography and reading direction.</p>
+<dl style="margin: 12px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; border-top: 1px solid #C9C5BB">
+<div style="padding: 20px 0; border-bottom: 1px solid #C9C5BB"><dt style="font-size: 13px; color: #5A5A60">Design</dt><dd style="margin: 4px 0 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: #0A0A0B">Figma · Canva · Adobe</dd></div>
+<div style="padding: 20px 0; border-bottom: 1px solid #C9C5BB"><dt style="font-size: 13px; color: #5A5A60">Build</dt><dd style="margin: 4px 0 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: #0A0A0B">Lovable · Claude Code</dd></div>
+<div style="padding: 20px 0; border-bottom: 1px solid #C9C5BB"><dt style="font-size: 13px; color: #5A5A60">Code</dt><dd style="margin: 4px 0 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: #0A0A0B">Java · C++ · HTML/CSS</dd></div>
+<div style="padding: 20px 0; border-bottom: 1px solid #C9C5BB"><dt style="font-size: 13px; color: #5A5A60">Education</dt><dd style="margin: 4px 0 0; font-weight: 500; color: #0A0A0B">Information Engineering, Damascus University</dd></div>
+</dl>
+</div>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 140px 40px 100px">
+<p style="margin: 0 0 48px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: #8E8E94">How I work</p>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px">
+<li style="padding: 32px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2E; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: #C8F04A">01</span><div><h3 style="margin: 0 0 6px; font-family: Alexandria, sans-serif; font-size: 22px">Understand</h3><p style="margin: 0; color: #A3A3A8">The users, the goal and the competition, before a single line.</p></div></li>
+<li style="padding: 32px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2E; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: #C8F04A">02</span><div><h3 style="margin: 0 0 6px; font-family: Alexandria, sans-serif; font-size: 22px">Design</h3><p style="margin: 0; color: #A3A3A8">Structure first, then identity and final screens.</p></div></li>
+<li style="padding: 32px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2E; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: #C8F04A">03</span><div><h3 style="margin: 0 0 6px; font-family: Alexandria, sans-serif; font-size: 22px">Build</h3><p style="margin: 0; color: #A3A3A8">A responsive website that works on every screen.</p></div></li>
+<li style="padding: 32px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2E; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: #C8F04A">04</span><div><h3 style="margin: 0 0 6px; font-family: Alexandria, sans-serif; font-size: 22px">Launch</h3><p style="margin: 0; color: #A3A3A8">Publishing, organised handover, and support after launch.</p></div></li>
+</ol>
+</section>
+<section id="en-contact" style="max-width: 1360px; margin: 0 auto; padding: 80px 40px 48px">
+<div style="border-radius: 40px; background: #C8F04A; color: #0A0A0B; padding: clamp(40px, 7vw, 110px)">
+<p style="margin: 0 0 24px; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 500">Let's work together</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(48px, 8.6vw, 140px); line-height: 1.02; letter-spacing: -2px">Got an idea?<br/>Let's make it seen.</h2>
+<div style="margin-top: 56px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<a href="mailto:roaa.ib06@gmail.com" style="display: inline-flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 34px; border-radius: 999px; background: #0A0A0B; color: #F2EFE8; text-decoration: none; font-weight: 600; font-size: 19px; font-family: 'Space Grotesk', 'IBM Plex Sans Arabic', sans-serif">roaa.ib06@gmail.com <span aria-hidden="true">→</span></a>
+<a href="https://github.com/roaaib06-boop" style="display: inline-flex; align-items: center; gap: 10px; min-height: 64px; padding: 0 28px; border-radius: 999px; border: 1.5px solid #0A0A0B; color: #0A0A0B; text-decoration: none; font-weight: 600; font-size: 17px; font-family: 'Space Grotesk', sans-serif"><svg aria-hidden="true" fill="#0A0A0B" height="20" viewbox="0 0 24 24" width="20"><path d="M12 .5a11.5 11.5 0 00-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0012 .5z"></path></svg>GitHub</a>
+</div>
+</div>
+<footer style="margin-top: 48px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 14px; color: #8E8E94">
+<span>© 2026 Roaa Ibrahim</span>
+<span>Designed right-to-left. Translated left-to-right.</span>
+<a href="#en-top" style="color: #F2EFE8">Back to top ↑</a>
+</footer>
+</section>
+</div>
+</main>
+<main class="view" data-route="en-manara" data-lang="en" lang="en" dir="ltr" data-title="Manarat Al-Ashrafia — Case study | Roaa Ibrahim" style="background:#0A0A0B" hidden>
+<div dir="ltr" style="font-family: 'Readex Pro', system-ui, sans-serif; color: #FAF7F1; background: #0A0A0B; width: 100%; line-height: 1.75; overflow: hidden">
+<section style="background: #0B2238; position: relative">
+<div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px 0; position: relative">
+<nav aria-label="Navigation" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center">
+<a href="#en-home" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px; border: 1px solid #23415D; border-radius: 999px; text-decoration: none; font-size: 15px"><span aria-hidden="true">←</span> All work</a>
+<a aria-label="Roaa Ibrahim — Home" href="#en-home" style="width: 48px; height: 48px; border-radius: 50%; background: #C8F04A; color: #0A0A0B; display: inline-flex; align-items: center; justify-content: center; font-family: Alexandria, sans-serif; font-weight: 900; font-size: 24px; text-decoration: none">R</a>
+</nav>
+<div style="padding: 90px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap: 56px; align-items: end">
+<div>
+<p style="margin: 0 0 20px; display: inline-flex; gap: 10px; align-items: center; padding: 8px 18px; border-radius: 999px; background: rgba(158,195,224,0.14); font-size: 14px; color: #C9DDED"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #C8F04A"></span>Case study 01 · Real client</p>
+<h1 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(64px, 9vw, 144px); line-height: 1.05">منارة<br/><span style="color: #9EC3E0">الأشرفية</span></h1>
+<p style="margin: 26px 0 0; font-size: 22px; color: #C9D5DF; max-width: 560px">Identity and website for a real residential development in Ashrafiyet Sahnaya, Damascus: I designed the logo, photographed the buildings during construction, and built a launch-ready website.</p>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-bottom: 8px">
+<div><dt style="font-size: 13px; color: #9EC3E0">Client</dt><dd style="margin: 4px 0 0">Eng. Mustafa Ibrahim</dd></div>
+<div><dt style="font-size: 13px; color: #9EC3E0">My role</dt><dd style="margin: 4px 0 0">Logo, photography, UX/UI</dd></div>
+<div><dt style="font-size: 13px; color: #9EC3E0">Deliverables</dt><dd style="margin: 4px 0 0">Logo + responsive website</dd></div>
+<div><dt style="font-size: 13px; color: #9EC3E0">Year</dt><dd style="margin: 4px 0 0; font-family: 'Space Grotesk', sans-serif">2026</dd></div>
+</dl>
+</div>
+<a aria-label="Open the Manarat Al-Ashrafia website" href="#manara-site" style="display: block; margin-top: 80px; border-radius: 26px 26px 0 0; overflow: hidden; background: #F1ECE3; text-decoration: none; color: #0B2238; box-shadow: 0 -30px 90px rgba(0,0,0,0.45)">
+<div aria-hidden="true">
+<div style="background: #FAF7F1; padding: 12px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2DACB"><img alt="" src="img/logo_full.png" style="height: 50px; width: auto; display: block"/><span style="display: flex; gap: 26px; font-size: 13px"><span>الشقق</span><span>الموقع</span><span>من موقع البناء</span><span>تواصل</span></span><span style="padding: 8px 18px; border-radius: 999px; background: #10446E; color: #FAF7F1; font-size: 12px">واتساب</span></div>
+<div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; padding: 44px 40px 0; align-items: end">
+<div style="padding-bottom: 48px">
+<p style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 76px; line-height: 1.12">بيتٌ يُرى<br/>من <span style="color: #10446E">بعيد</span>.</p>
+<div style="margin-top: 26px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #FAF7F1; border-radius: 18px; overflow: hidden; max-width: 520px; font-size: 12px"><span style="padding: 14px 16px; border-left: 1px solid #E2DACB">المساحات<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 19px">110–150 م²</b></span><span style="padding: 14px 16px; border-left: 1px solid #E2DACB">سعر المتر<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 19px">275–350 $</b></span><span style="padding: 14px 16px">الملكية<b style="display: block; font-family: 'Reem Kufi', sans-serif; font-size: 19px">طابو أخضر</b></span></div>
+</div>
+<div style="height: 460px; border-radius: 999px 999px 0 0; overflow: hidden"><img alt="" src="img/hero.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block"/></div>
+</div>
+</div>
+</a>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 140px 40px 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9EC3E0; font-weight: 700">01 — Starting point</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">A real project, marketed with one image and a WhatsApp post.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 22px; font-size: 19px; color: #C9C6BF">
+<p style="margin: 0">The project was promoted through stock-image posts carrying the same facts: sizes, prices, distances. Strong information, but scattered, and it didn't build the trust a finished development deserves.</p>
+<p style="margin: 0"><strong style="color: #FAF7F1">The goal:</strong> one clear website for everything, turning "most apartments are sold" from an ending into proof of credibility that nudges hesitant buyers to get in touch now.</p>
+</div>
+</section>
+<section aria-label="From the building site" style="max-width: 1360px; margin: 0 auto; padding: 0 40px 120px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px">
+<figure style="margin: 0; grid-column: span 2; height: 440px; border-radius: 24px; overflow: hidden; min-width: 0"><img alt="The project from the street, with cypress trees" src="img/wide.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block"/></figure>
+<figure style="margin: 0; height: 440px; border-radius: 24px; overflow: hidden"><img alt="Balconies of one of the buildings" src="img/balcony.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block"/></figure>
+</div>
+<p style="margin: 18px 0 0; color: #8E8E94">I photographed the project myself during construction, then colour-graded and cropped the photos to work inside the site.</p>
+</section>
+<section style="background: #F1ECE3; color: #0B2238">
+<div style="max-width: 1360px; margin: 0 auto; padding: 130px 40px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #10446E; font-weight: 700">02 — Logo &amp; identity</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 64px; align-items: center">
+<div style="padding: 48px; border-radius: 28px; background: #FAF7F1; display: flex; justify-content: center"><img alt="Manarat Al-Ashrafia logo" src="img/logo_full.png" style="height: 260px; width: auto; display: block"/></div>
+<div>
+<h2 style="margin: 0 0 16px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.25">A lighthouse inside an arch, lighting up the buildings.</h2>
+<p style="margin: 0 0 16px; font-size: 19px; color: #46525C">I designed the logo to tell the name visually (Manara means lighthouse): an eastern arch frames the scene, a lighthouse inside it casts a beam of light, and below it stand buildings drawn in vertical lines like the project's own. The name is set in a bold Kufi style that echoes those lines.</p>
+<p style="margin: 0; font-size: 19px; color: #46525C">The deep blue signals trust and stability. On the website I paired it with the limestone colour of the facades in my photos, and turned the logo's arch into the frame of the hero image.</p>
+</div>
+</div>
+<div style="margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 14px">
+<div style="border-radius: 24px; background: #10446E; color: #FAF7F1; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600">Lighthouse blue</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif; color: #C9D5DF">#10446E</p></div>
+<div style="border-radius: 24px; background: #0B2238; color: #FAF7F1; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600">Night</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif; color: #C9D5DF">#0B2238</p></div>
+<div style="border-radius: 24px; background: #F1ECE3; color: #0B2238; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid #D8CFBF"><p style="margin: 0; font-weight: 600">Limestone</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif">#F1ECE3</p></div>
+<div style="border-radius: 24px; background: #9EC3E0; color: #0B2238; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600">Sky</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif">#9EC3E0</p></div>
+</div>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 130px 40px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9EC3E0; font-weight: 700">03 — Design decisions</p>
+<h2 style="margin: 0 0 56px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2; max-width: 980px">What I took from the best real-estate developer websites.</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px">
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E"><p style="margin: 0 0 18px; font-family: 'Space Grotesk', sans-serif; font-size: 40px; color: #9EC3E0">01</p><h3 style="margin: 0 0 8px; font-family: Alexandria, sans-serif; font-size: 24px">Numbers first</h3><p style="margin: 0; color: #C9C6BF">Size, price per square metre and title type sit on the first screen, because they are the three questions every buyer asks first.</p></div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E"><p style="margin: 0 0 18px; font-family: 'Space Grotesk', sans-serif; font-size: 40px; color: #9EC3E0">02</p><h3 style="margin: 0 0 8px; font-family: Alexandria, sans-serif; font-size: 24px">Location in metres</h3><p style="margin: 0; color: #C9C6BF">Instead of "prime location", a precise list: 100 m to the highway, 300 m to the mosque, 400 m to the sports complex, and a view of the school, with its photo.</p></div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E"><p style="margin: 0 0 18px; font-family: 'Space Grotesk', sans-serif; font-size: 40px; color: #9EC3E0">03</p><h3 style="margin: 0 0 8px; font-family: Alexandria, sans-serif; font-size: 24px">Scarcity persuades</h3><p style="margin: 0; color: #C9C6BF">"Most apartments are sold. Get in touch before they're gone." The project's real status became a clear call to message on WhatsApp or request a call.</p></div>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 130px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 72px; align-items: center">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9EC3E0; font-weight: 700">04 — On mobile</p>
+<h2 style="margin: 0 0 22px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">People look for homes on their phones.</h2>
+<p style="margin: 0; font-size: 19px; color: #C9C6BF">The arched photo at the top, the three key numbers right below it, and the WhatsApp button always within thumb's reach.</p>
+</div>
+<div aria-hidden="true" style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap">
+<div style="width: 250px; height: 520px; border-radius: 40px; background: #23415D; padding: 10px; box-shadow: 0 30px 70px rgba(0,0,0,0.5)">
+<div style="height: 100%; border-radius: 32px; overflow: hidden; background: #F1ECE3; color: #0B2238; padding: 22px 14px 0">
+<img alt="" src="img/logo_full.png" style="height: 40px; width: auto; display: block"/>
+<div style="margin-top: 14px; height: 230px; border-radius: 999px 999px 16px 16px; overflow: hidden"><img alt="" src="img/hero.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block"/></div>
+<p style="margin: 14px 0 8px; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.15">بيتٌ يُرى من <span style="color: #10446E">بعيد</span>.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; font-size: 10px; text-align: center"><span style="padding: 6px 0; border-radius: 8px; background: #FAF7F1"><b style="display: block; font-size: 12px">110–150</b>م²</span><span style="padding: 6px 0; border-radius: 8px; background: #FAF7F1"><b style="display: block; font-size: 12px">275–350$</b>للمتر</span><span style="padding: 6px 0; border-radius: 8px; background: #FAF7F1"><b style="display: block; font-size: 12px">طابو</b>أخضر</span></div>
+</div>
+</div>
+<div style="width: 250px; height: 520px; border-radius: 40px; background: #23415D; padding: 10px; box-shadow: 0 30px 70px rgba(0,0,0,0.5); margin-top: 48px">
+<div style="height: 100%; border-radius: 32px; overflow: hidden; background: #0B2238; color: #FAF7F1; padding: 26px 16px 0; position: relative">
+<p style="margin: 0; color: #9EC3E0; font-size: 12px">الموقع</p>
+<p style="margin: 4px 0 14px; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.2">كل ما تحتاجه، على بُعد خطوات.</p>
+<div style="display: grid; gap: 0; font-size: 13px; border-top: 1px solid #23415D"><span style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #23415D">الاتستراد<b style="color: #9EC3E0">100 م</b></span><span style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #23415D">جامع<b style="color: #9EC3E0">300 م</b></span><span style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #23415D">مدينة رياضية<b style="color: #9EC3E0">400 م</b></span><span style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #23415D">دمشق<b style="color: #9EC3E0">10 كم</b></span></div>
+<div style="margin-top: 14px; height: 110px; border-radius: 14px; overflow: hidden"><img alt="" src="img/school.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block"/></div>
+<div style="position: absolute; bottom: 14px; left: 14px; right: 14px; padding: 13px 0; border-radius: 999px; background: #FAF7F1; color: #0B2238; text-align: center; font-size: 13px; font-weight: 600">واتساب</div>
+</div>
+</div>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 130px">
+<div style="border-radius: 32px; background: #141416; border: 1px solid #2A2A2E; padding: clamp(36px, 5vw, 72px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 56px">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9EC3E0; font-weight: 700">05 — Outcome</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.25">From scattered posts to a website that builds trust.</h2>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; font-size: 18px; color: #C9C6BF">
+<li style="display: flex; gap: 14px"><span aria-hidden="true" style="color: #9EC3E0">✦</span>All the project's real information in one place, ordered by the buyer's questions.</li>
+<li style="display: flex; gap: 14px"><span aria-hidden="true" style="color: #9EC3E0">✦</span>Real photos I shot and edited myself, instead of stock images.</li>
+<li style="display: flex; gap: 14px"><span aria-hidden="true" style="color: #9EC3E0">✦</span>A logo I designed that tells the name: an arch, a lighthouse, buildings.</li>
+<li style="display: flex; gap: 14px"><span aria-hidden="true" style="color: #9EC3E0">✦</span>A direct path to contact: WhatsApp and call requests from every section.</li>
+</ul>
+</div>
+</section>
+<a href="#en-siraj" style="display: block; text-decoration: none; color: #0A0A0B; background: #C8F04A">
+<div style="max-width: 1360px; margin: 0 auto; padding: 90px 40px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center">
+<div><p style="margin: 0 0 8px; font-size: 15px">Next project</p><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 1.05">سِراج</p></div>
+<span aria-hidden="true" style="font-size: 64px">→</span>
+</div>
+</a>
+</div>
+</main>
+<main class="view" data-route="en-siraj" data-lang="en" lang="en" dir="ltr" data-title="Siraj — Case study | Roaa Ibrahim" style="background:#0A0A0B" hidden>
+<div dir="ltr" style="font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; color: #F6EFE2; background: #0A0A0B; width: 100%; line-height: 1.75; overflow: hidden">
+<section style="background: #0E3B2E; position: relative">
+<div aria-hidden="true" class="sj-glow" style="position: absolute; top: 120px; left: 50%; margin-left: -380px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(227,163,59,0.28) 0%, rgba(14,59,46,0) 62%)"></div>
+<div style="max-width: 1360px; margin: 0 auto; padding: 28px 40px 0; position: relative">
+<nav aria-label="Navigation" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center">
+<a href="#en-home" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px; border: 1px solid #3A6B5A; border-radius: 999px; text-decoration: none; font-size: 15px"><span aria-hidden="true">←</span> All work</a>
+<a aria-label="Roaa Ibrahim — Home" href="#en-home" style="width: 48px; height: 48px; border-radius: 50%; background: #C8F04A; color: #0A0A0B; display: inline-flex; align-items: center; justify-content: center; font-family: Alexandria, sans-serif; font-weight: 900; font-size: 24px; text-decoration: none">R</a>
+</nav>
+<div style="text-align: center; padding: 96px 0 0">
+<p style="margin: 0 0 20px; display: inline-flex; gap: 10px; align-items: center; padding: 8px 18px; border: 1px solid #3A6B5A; border-radius: 999px; font-size: 14px; color: #CFE0D7">Case study 02 · Self-initiated concept</p>
+<div aria-hidden="true" style="margin: 0 auto 8px; width: 64px; height: 84px; position: relative">
+<div style="position: absolute; bottom: 0; left: 4px; width: 56px; height: 28px; border-radius: 0 0 28px 28px; background: #E3A33B"></div>
+<div style="position: absolute; top: 4px; left: 20px; width: 24px; height: 40px; border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; background: #F6EFE2"></div>
+</div>
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(80px, 13vw, 210px); line-height: 1; letter-spacing: -3px">سِراج</h1>
+<p style="margin: 24px auto 0; max-width: 680px; font-size: 22px; color: #CFE0D7">An Arabic reading and audiobook app, designed to make reading in Arabic as comfortable and beautiful as it should be. Siraj means oil lamp.</p>
+</div>
+<div aria-hidden="true" style="margin-top: 80px; display: flex; justify-content: center; align-items: flex-end; gap: 32px; flex-wrap: wrap">
+<div style="width: 280px; height: 560px; border-radius: 46px 46px 0 0; background: #061F18; padding: 11px 11px 0; box-shadow: 0 -30px 80px rgba(0,0,0,0.35)">
+<div style="height: 100%; border-radius: 36px 36px 0 0; overflow: hidden; background: #F6EFE2; padding: 40px 22px 0; color: #12241D">
+<p style="margin: 0; font-size: 13px; color: #5B6B63">مساء الخير، رؤى</p>
+<p style="margin: 2px 0 18px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 24px">أكمل القراءة</p>
+<div style="display: flex; gap: 12px; background: #FFFFFF; border-radius: 18px; padding: 12px"><div style="width: 66px; height: 96px; border-radius: 8px; background: linear-gradient(160deg, #0E3B2E, #1F6B52)"></div><div style="flex: 1"><p style="margin: 0; font-weight: 600; font-size: 15px">طوق الحمامة</p><p style="margin: 0 0 12px; font-size: 12px; color: #5B6B63">ابن حزم الأندلسي</p><div style="height: 5px; border-radius: 3px; background: #E8DFCD"><div style="width: 64%; height: 100%; border-radius: 3px; background: #E3A33B"></div></div><p style="margin: 6px 0 0; font-size: 11px; color: #5B6B63">64% · بقي 40 دقيقة</p></div></div>
+<div style="margin-top: 18px; padding: 14px 16px; border-radius: 18px; background: #0E3B2E; color: #F6EFE2; display: flex; justify-content: space-between; align-items: center"><div><p style="margin: 0; font-size: 12px; color: #CFE0D7">هدف اليوم</p><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 18px">18 من 30 دقيقة</p></div><div style="width: 46px; height: 46px; border-radius: 50%; border: 5px solid #2B5E4C; border-top-color: #E3A33B; border-left-color: #E3A33B"></div></div>
+<p style="margin: 20px 0 10px; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">مختارات لك</p>
+<div style="display: flex; gap: 10px"><div style="width: 74px; height: 106px; border-radius: 8px; background: linear-gradient(160deg, #E3A33B, #B9761A)"></div><div style="width: 74px; height: 106px; border-radius: 8px; background: linear-gradient(160deg, #3C2F5C, #6A5794)"></div><div style="width: 74px; height: 106px; border-radius: 8px; background: linear-gradient(160deg, #8E3B2E, #C2624E)"></div></div>
+</div>
+</div>
+<div style="width: 300px; height: 620px; border-radius: 48px 48px 0 0; background: #061F18; padding: 11px 11px 0; box-shadow: 0 -30px 80px rgba(0,0,0,0.35)">
+<div style="height: 100%; border-radius: 38px 38px 0 0; overflow: hidden; background: #FBF6EC; padding: 40px 26px 0; color: #12241D">
+<div style="display: flex; justify-content: space-between; font-size: 12px; color: #5B6B63"><span>ديوان المتنبي</span><span>ص 112</span></div>
+<p style="margin: 40px 0 0; font-family: Amiri, serif; font-size: 25px; line-height: 2.1; text-align: center">الخَيْلُ وَاللّيْلُ وَالبَيْداءُ تَعرِفُني<br/>وَالسّيفُ وَالرّمحُ والقرْطاسُ وَالقَلَمُ</p>
+<div style="margin: 34px auto 0; width: 40px; height: 2px; background: #E3A33B"></div>
+<div style="margin-top: 40px; padding: 14px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 10px 30px rgba(18,36,29,0.08)">
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px"><span style="font-weight: 600">حجم الخط</span><span style="font-family: Amiri, serif; font-size: 18px">أ <span style="font-size: 26px">أ</span></span></div>
+<div style="margin-top: 10px; height: 4px; border-radius: 2px; background: #E8DFCD"><div style="width: 60%; height: 100%; background: #0E3B2E; border-radius: 2px"></div></div>
+<div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 13px"><span style="font-weight: 600">إظهار التشكيل</span><span style="width: 40px; height: 24px; border-radius: 12px; background: #0E3B2E; position: relative; display: inline-block"><span style="position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #E3A33B"></span></span></div>
+</div>
+</div>
+</div>
+<div style="width: 280px; height: 560px; border-radius: 46px 46px 0 0; background: #061F18; padding: 11px 11px 0; box-shadow: 0 -30px 80px rgba(0,0,0,0.35)">
+<div style="height: 100%; border-radius: 36px 36px 0 0; overflow: hidden; background: #12241D; padding: 44px 24px 0; text-align: center">
+<div style="width: 180px; height: 180px; margin: 0 auto; border-radius: 24px; background: linear-gradient(160deg, #E3A33B, #B9761A); box-shadow: 0 24px 50px rgba(227,163,59,0.28)"></div>
+<p style="margin: 26px 0 2px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 21px">مقدّمة ابن خلدون</p>
+<p style="margin: 0; font-size: 12px; color: #A9B8B0">الفصل الثالث · بصوت سامر</p>
+<div style="margin: 24px 0 6px; height: 4px; border-radius: 2px; background: #2B4A3E"><div style="width: 38%; height: 100%; background: #E3A33B; border-radius: 2px"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 11px; color: #A9B8B0; direction: ltr; font-family: 'Space Grotesk', sans-serif"><span>14:02</span><span>36:40</span></div>
+<div style="margin-top: 22px; display: flex; justify-content: center; align-items: center; gap: 26px"><span style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #A9B8B0"></span><span style="width: 66px; height: 66px; border-radius: 50%; background: #E3A33B; display: inline-flex; align-items: center; justify-content: center"><span style="display: flex; gap: 5px"><span style="width: 5px; height: 20px; background: #12241D; border-radius: 2px"></span><span style="width: 5px; height: 20px; background: #12241D; border-radius: 2px"></span></span></span><span style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #A9B8B0"></span></div>
+<p style="margin: 22px 0 0; display: inline-block; padding: 8px 16px; border-radius: 999px; background: #1C3A2F; font-size: 12px; color: #F6EFE2">تابع قراءةً من حيث توقّفت ←</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 72px 40px 0">
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 32px; border-bottom: 1px solid #2A2A2E; padding-bottom: 48px">
+<div><dt style="font-size: 13px; color: #8E8E94">My role</dt><dd style="margin: 6px 0 0; font-size: 18px">Concept, identity, UI/UX</dd></div>
+<div><dt style="font-size: 13px; color: #8E8E94">Platform</dt><dd style="margin: 6px 0 0; font-size: 18px">iOS &amp; Android app</dd></div>
+<div><dt style="font-size: 13px; color: #8E8E94">Type</dt><dd style="margin: 6px 0 0; font-size: 18px">Self-initiated concept</dd></div>
+<div><dt style="font-size: 13px; color: #8E8E94">Year</dt><dd style="margin: 6px 0 0; font-size: 18px; font-family: 'Space Grotesk', sans-serif">2026</dd></div>
+</dl>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 120px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">01 — The problem</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">Arabic is read on screens in layouts never designed for it.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 22px; font-size: 19px; color: #C9C6BF">
+<p style="margin: 0">Most reading apps were built for Latin scripts with Arabic added later: cramped lines, diacritics colliding with letters, and interfaces that flip direction in confusing ways.</p>
+<p style="margin: 0"><strong style="color: #F6EFE2">Design hypothesis:</strong> if the app is designed for Arabic script from the ground up, with seamless switching between reading and listening, people will read more and for longer.</p>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 120px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">02 — Who it's for</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px">
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E">
+<p style="margin: 0 0 18px; font-size: 13px; color: #8E8E94">Proto-persona 1</p>
+<h3 style="margin: 0 0 10px; font-family: Alexandria, sans-serif; font-size: 28px">The commuting reader</h3>
+<p style="margin: 0; color: #C9C6BF">A university student reading on a small screen during her commute. She needs text that's easy on the eyes, and to pick up where she left off without searching.</p>
+</div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E">
+<p style="margin: 0 0 18px; font-size: 13px; color: #8E8E94">Proto-persona 2</p>
+<h3 style="margin: 0 0 10px; font-family: Alexandria, sans-serif; font-size: 28px">The busy listener</h3>
+<p style="margin: 0; color: #C9C6BF">An employee with no time to read, who listens while driving and wants to return to the text in the evening from the exact same point.</p>
+</div>
+</div>
+</section>
+<section style="background: #F6EFE2; color: #12241D">
+<div style="max-width: 1360px; margin: 0 auto; padding: 130px 40px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #9A6514; font-weight: 700">03 — Identity</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 64px; align-items: center">
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">Siraj: the lamp you read by.</h2>
+<p style="margin: 0; font-size: 19px; color: #3B4A43">The name comes from the old oil lamp. The mark combines a lamp and a paper flame, and the colours come from reading at night: deep green ink, warm saffron light, and ivory paper.</p>
+</div>
+<div style="margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px">
+<div style="border-radius: 24px; background: #0E3B2E; color: #F6EFE2; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600; font-size: 18px">Green ink</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif; color: #CFE0D7">#0E3B2E</p></div>
+<div style="border-radius: 24px; background: #E3A33B; color: #12241D; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600; font-size: 18px">Saffron light</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif">#E3A33B</p></div>
+<div style="border-radius: 24px; background: #FBF6EC; color: #12241D; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid #E2D8C4"><p style="margin: 0; font-weight: 600; font-size: 18px">Ivory paper</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif">#FBF6EC</p></div>
+<div style="border-radius: 24px; background: #12241D; color: #F6EFE2; padding: 28px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end"><p style="margin: 0; font-weight: 600; font-size: 18px">Reading night</p><p style="margin: 0; font-family: 'Space Grotesk', sans-serif; color: #CFE0D7">#12241D</p></div>
+</div>
+<div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 16px">
+<div style="border-radius: 24px; background: #FFFFFF; padding: 40px; border: 1px solid #E2D8C4"><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: 88px; line-height: 1.1; color: #0E3B2E">سِراج</p><p style="margin: 18px 0 0; color: #3B4A43">Alexandria for the interface and headings: geometric and modern, clear in buttons and menus.</p></div>
+<div style="border-radius: 24px; background: #FFFFFF; padding: 40px; border: 1px solid #E2D8C4"><p style="margin: 0; font-family: Amiri, serif; font-size: 40px; line-height: 1.9; color: #12241D">وَخَيرُ جَليسٍ في الزّمانِ كِتابُ</p><p style="margin: 18px 0 0; color: #3B4A43">Amiri for book text: a classic Naskh with full diacritics support, comfortable for long reading.</p></div>
+</div>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 130px 40px">
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">04 — Design decisions</p>
+<h2 style="margin: 0 0 56px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2; max-width: 900px">Three decisions that shaped the experience.</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px">
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E; display: flex; flex-direction: column; gap: 16px">
+<span aria-hidden="true" style="font-family: Amiri, serif; font-size: 64px; line-height: 1; color: #E3A33B">أ</span>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-size: 24px">Readers control the text</h3>
+<p style="margin: 0; color: #C9C6BF">Font size, line spacing, and showing or hiding diacritics, in one panel that opens with a tap without leaving the page.</p>
+</div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E; display: flex; flex-direction: column; gap: 16px">
+<svg aria-hidden="true" fill="none" height="56" stroke="#E3A33B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="56"><path d="M3 18v-6a9 9 0 0118 0v6"></path><path d="M21 19a2 2 0 01-2 2h-1v-6h3zM3 19a2 2 0 002 2h1v-6H3z"></path></svg>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-size: 24px">Read and listen, one book</h3>
+<p style="margin: 0; color: #C9C6BF">One button moves you from text to audio at the same sentence, and back. The book remembers where you stopped, however you were reading.</p>
+</div>
+<div style="padding: 40px; border-radius: 28px; background: #141416; border: 1px solid #2A2A2E; display: flex; flex-direction: column; gap: 16px">
+<svg aria-hidden="true" fill="none" height="56" stroke="#E3A33B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="56"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+<h3 style="margin: 0; font-family: Alexandria, sans-serif; font-size: 24px">Small goals, big habit</h3>
+<p style="margin: 0; color: #C9C6BF">A daily goal in minutes, not pages, because time is easier to plan, with a clear progress ring on the home screen.</p>
+</div>
+</div>
+</section>
+<section style="background: #0E3B2E">
+<div style="max-width: 1360px; margin: 0 auto; padding: 130px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 72px; align-items: center">
+<div aria-hidden="true" style="display: flex; justify-content: center">
+<div style="width: 320px; height: 660px; border-radius: 52px; background: #061F18; padding: 12px; box-shadow: 0 40px 90px rgba(0,0,0,0.45)">
+<div style="height: 100%; border-radius: 42px; overflow: hidden; background: #F6EFE2; padding: 48px 24px; color: #12241D">
+<p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 26px">رحلتك هذا الأسبوع</p>
+<p style="margin: 4px 0 26px; font-size: 13px; color: #5B6B63">قرأت 3 ساعات و20 دقيقة</p>
+<div style="display: flex; align-items: flex-end; gap: 12px; height: 170px; padding: 0 4px; border-bottom: 1px solid #E2D8C4">
+<div style="flex: 1; height: 45%; border-radius: 8px 8px 0 0; background: #CFE0D7"></div>
+<div style="flex: 1; height: 70%; border-radius: 8px 8px 0 0; background: #CFE0D7"></div>
+<div style="flex: 1; height: 30%; border-radius: 8px 8px 0 0; background: #CFE0D7"></div>
+<div style="flex: 1; height: 90%; border-radius: 8px 8px 0 0; background: #0E3B2E"></div>
+<div style="flex: 1; height: 60%; border-radius: 8px 8px 0 0; background: #CFE0D7"></div>
+<div style="flex: 1; height: 100%; border-radius: 8px 8px 0 0; background: #E3A33B"></div>
+<div style="flex: 1; height: 20%; border-radius: 8px 8px 0 0; background: #E8DFCD"></div>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 11px; color: #5B6B63; margin-top: 8px; padding: 0 4px"><span>سبت</span><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span></div>
+<div style="margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF"><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 26px; color: #0E3B2E">12</p><p style="margin: 0; font-size: 12px; color: #5B6B63">يوماً متتالياً</p></div>
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF"><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 26px; color: #0E3B2E">2</p><p style="margin: 0; font-size: 12px; color: #5B6B63">كتاب هذا الشهر</p></div>
+</div>
+<div style="margin-top: 16px; padding: 16px; border-radius: 16px; background: #0E3B2E; color: #F6EFE2; text-align: center; font-weight: 600">شارك إنجازك</div>
+</div>
+</div>
+</div>
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">05 — Progress screen</p>
+<h2 style="margin: 0 0 24px; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">Progress you can see is progress you repeat.</h2>
+<p style="margin: 0 0 18px; font-size: 19px; color: #CFE0D7">A weekly screen that celebrates progress instead of punishing gaps: simple bars, a standout day in saffron, and a streak that invites you back tomorrow.</p>
+<p style="margin: 0; font-size: 19px; color: #CFE0D7">The week starts on Saturday, and days read right-to-left, just as Arabic readers see them in their calendars.</p>
+</div>
+</div>
+</section>
+<section style="max-width: 1360px; margin: 0 auto; padding: 130px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px">
+<div>
+<p style="margin: 0 0 16px; font-family: 'Space Grotesk', sans-serif; color: #E3A33B; font-weight: 700">06 — Next steps</p>
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.2">From concept to product.</h2>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 0; border-top: 1px solid #2A2A2E; font-size: 18px">
+<li style="padding: 22px 0; border-bottom: 1px solid #2A2A2E; display: flex; gap: 20px"><span style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">01</span><span>Test the interactive prototype with real readers to measure reading comfort.</span></li>
+<li style="padding: 22px 0; border-bottom: 1px solid #2A2A2E; display: flex; gap: 20px"><span style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">02</span><span>Design a full dark mode for the reading pages.</span></li>
+<li style="padding: 22px 0; border-bottom: 1px solid #2A2A2E; display: flex; gap: 20px"><span style="font-family: 'Space Grotesk', sans-serif; color: #8E8E94">03</span><span>Build a design system so the app can grow.</span></li>
+</ul>
+</section>
+<a href="#en-manara" style="display: block; text-decoration: none; color: #0A0A0B; background: #C8F04A">
+<div style="max-width: 1360px; margin: 0 auto; padding: 90px 40px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center">
+<div><p style="margin: 0 0 8px; font-size: 15px">Next project</p><p style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 1.05">Manarat Al-Ashrafia</p></div>
+<span aria-hidden="true" style="font-size: 64px">→</span>
+</div>
+</a>
+</div>
+</main>
+<main class="view" data-route="manara-site" data-lang="ar" lang="ar" dir="rtl" data-title="موقع منارة الأشرفية — تصميم رؤى إبراهيم" style="background:#F1ECE3" hidden>
+<div dir="rtl" style="font-family: 'Readex Pro', system-ui, sans-serif; color: #0B2238; background: #F1ECE3; width: 100%; line-height: 1.75">
+
+<header id="manara-top" style="background: #FAF7F1; border-bottom: 1px solid #E2DACB">
+<div style="max-width: 1320px; margin: 0 auto; padding: 14px 40px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<a href="#manara-top" aria-label="منارة الأشرفية — الرئيسية" style="display: inline-flex; align-items: center"><img src="img/logo_full.png" alt="شعار منارة الأشرفية" style="height: 64px; width: auto; display: block"></a>
+<nav aria-label="القائمة الرئيسية" style="display: flex; flex-wrap: wrap; gap: 30px; font-size: 15px">
+<a href="#manara-apartments" style="text-decoration: none">الشقق</a>
+<a href="#manara-location" style="text-decoration: none">الموقع</a>
+<a href="#manara-gallery" style="text-decoration: none">من موقع البناء</a>
+<a href="#manara-contact" style="text-decoration: none">تواصل</a>
+</nav>
+<a href="https://wa.me/963936077874" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; background: #10446E; color: #FAF7F1; text-decoration: none; font-size: 14px; font-weight: 500"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAF7F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.5 7.4L3 20.5l1.6-5.3A8.5 8.5 0 1121 11.5z"></path></svg>واتساب</a>
+</div>
+</header>
+
+<section style="max-width: 1320px; margin: 0 auto; padding: 64px 40px 90px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr)); gap: 56px; align-items: center">
+<div>
+<p style="margin: 0 0 24px; display: inline-flex; gap: 10px; align-items: center; padding: 8px 16px; border-radius: 999px; background: #E3EAF1; color: #10446E; font-size: 14px; font-weight: 500"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #10446E"></span>اكتمل البناء · بيعت معظم الشقق</p>
+<h1 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(54px, 7vw, 104px); line-height: 1.12">بيتٌ يُرى<br>من <span style="color: #10446E">بعيد</span>.</h1>
+<p style="margin: 24px 0 0; font-size: 19px; color: #46525C; max-width: 520px">شقق سكنية بمساحات واسعة في أشرفية صحنايا، على بُعد 10 كم جنوب دمشق، بملكية طابو أخضر وإشراف هندسي كامل.</p>
+<dl style="margin: 36px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; background: #FAF7F1; border-radius: 22px; overflow: hidden; max-width: 560px">
+<div style="padding: 18px 20px; border-left: 1px solid #E2DACB"><dt style="font-size: 12px; color: #6B7680">المساحات</dt><dd style="margin: 2px 0 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 22px">110–150 م²</dd></div>
+<div style="padding: 18px 20px; border-left: 1px solid #E2DACB"><dt style="font-size: 12px; color: #6B7680">سعر المتر</dt><dd style="margin: 2px 0 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 22px">275–350 $</dd></div>
+<div style="padding: 18px 20px"><dt style="font-size: 12px; color: #6B7680">الملكية</dt><dd style="margin: 2px 0 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: 22px">طابو أخضر</dd></div>
+</dl>
+<div style="margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#manara-apartments" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 28px; border-radius: 999px; background: #0B2238; color: #FAF7F1; text-decoration: none; font-weight: 500">تفاصيل الشقق</a>
+<a href="#manara-gallery" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 28px; border-radius: 999px; border: 1px solid #0B2238; text-decoration: none">شاهد المشروع</a>
+</div>
+</div>
+<figure class="mn-fig" style="margin: 0; position: relative; height: 640px; border-radius: 999px 999px 28px 28px; overflow: hidden; background: #D9E3EA">
+<img class="mn-ph" src="img/hero.jpg" alt="أحد أبنية منارة الأشرفية بواجهته الحجرية، بين أشجار النخيل" style="width: 100%; height: 100%; object-fit: cover; display: block">
+<figcaption style="position: absolute; bottom: 18px; right: 18px; padding: 8px 14px; border-radius: 999px; background: rgba(250,247,241,0.92); font-size: 13px">صورة حقيقية من موقع المشروع</figcaption>
+</figure>
+</section>
+
+<section aria-label="المشروع من الشارع" style="position: relative; height: 560px; overflow: hidden; background: #0B2238">
+<img src="img/wide.jpg" alt="منارة الأشرفية من زاوية الشارع مع أشجار السرو" style="width: 100%; height: 100%; object-fit: cover; display: block; opacity: .9">
+<div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,34,56,0) 30%, rgba(11,34,56,0.82) 100%)"></div>
+<div style="position: absolute; top: 50%; right: max(40px, calc((100% - 1320px) / 2 + 40px)); transform: translateY(-50%); max-width: 520px; color: #FAF7F1">
+<p style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(38px, 4.4vw, 64px); line-height: 1.2">100 متر فقط<br>عن اتستراد دمشق–درعا.</p>
+<p style="margin: 16px 0 0; font-size: 18px; color: #D6E0E8">قريب من الطريق، بعيد عن ضجيجه.</p>
+</div>
+</section>
+
+<section id="manara-apartments" style="max-width: 1320px; margin: 0 auto; padding: 120px 40px 100px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 56px; margin-bottom: 52px; align-items: end">
+<div>
+<p style="margin: 0 0 14px; color: #10446E; font-weight: 500">الشقق</p>
+<h2 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(36px, 4vw, 58px); line-height: 1.2">مساحات واسعة، وأسعار منافسة.</h2>
+</div>
+<p style="margin: 0; font-size: 18px; color: #46525C">بيعت معظم شقق المشروع. تواصل معنا لمعرفة الشقق المتبقية ومساحاتها المتاحة اليوم.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px">
+<div style="padding: 32px; border-radius: 26px; background: #FAF7F1; display: flex; flex-direction: column; gap: 10px">
+<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#10446E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 12h9V3M12 12v9"></path></svg>
+<h3 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-size: 34px; line-height: 1.2">110–150 م²</h3>
+<p style="margin: 0; color: #46525C">شقق سكنية بمساحات تناسب العائلات.</p>
+</div>
+<div style="padding: 32px; border-radius: 26px; background: #FAF7F1; display: flex; flex-direction: column; gap: 10px">
+<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#10446E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg>
+<h3 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-size: 34px; line-height: 1.2">275–350 $</h3>
+<p style="margin: 0; color: #46525C">سعر المتر المربع، حسب الطابق والمساحة.</p>
+</div>
+<div style="padding: 32px; border-radius: 26px; background: #FAF7F1; display: flex; flex-direction: column; gap: 10px">
+<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#10446E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"></path><path d="M14 3v6h6M9 15l2 2 4-4"></path></svg>
+<h3 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-size: 34px; line-height: 1.2">طابو أخضر</h3>
+<p style="margin: 0; color: #46525C">ملكية واضحة ومضمونة لكل شقة.</p>
+</div>
+<div style="padding: 32px; border-radius: 26px; background: #0B2238; color: #FAF7F1; display: flex; flex-direction: column; gap: 10px">
+<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#9EC3E0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s-6 6.4-6 11a6 6 0 0012 0c0-4.6-6-11-6-11z"></path></svg>
+<h3 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-size: 34px; line-height: 1.2">بئر وخزان</h3>
+<p style="margin: 0; color: #C9D5DF">بئر ماء وخزان أرضي للمشروع.</p>
+</div>
+</div>
+</section>
+
+<section id="manara-location" style="background: #0B2238; color: #FAF7F1">
+<div style="max-width: 1320px; margin: 0 auto; padding: 120px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 64px">
+<div>
+<p style="margin: 0 0 14px; color: #9EC3E0; font-weight: 500">الموقع</p>
+<h2 style="margin: 0 0 22px; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(36px, 4vw, 58px); line-height: 1.2">كل ما تحتاجه، على بُعد خطوات.</h2>
+<p style="margin: 0 0 30px; font-size: 18px; color: #C9D5DF">أشرفية صحنايا، 10 كم جنوب دمشق. يطلّ المشروع مباشرة على مدرسة منهل المجد.</p>
+<figure style="margin: 0; border-radius: 22px; overflow: hidden; position: relative">
+<img src="img/school.jpg" alt="مدرسة منهل المجد المقابلة للمشروع" style="width: 100%; height: 220px; object-fit: cover; display: block">
+<figcaption style="position: absolute; bottom: 14px; right: 14px; padding: 8px 14px; border-radius: 999px; background: rgba(11,34,56,0.85); font-size: 13px">الإطلالة: مدرسة منهل المجد</figcaption>
+</figure>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; gap: 0; border-top: 1px solid #23415D; align-self: center">
+<li style="display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; border-bottom: 1px solid #23415D; font-size: 18px"><span>اتستراد دمشق–درعا</span><span style="font-family: 'Reem Kufi', sans-serif; font-size: 24px; color: #9EC3E0">100 م</span></li>
+<li style="display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; border-bottom: 1px solid #23415D; font-size: 18px"><span>جامع</span><span style="font-family: 'Reem Kufi', sans-serif; font-size: 24px; color: #9EC3E0">300 م</span></li>
+<li style="display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; border-bottom: 1px solid #23415D; font-size: 18px"><span>مدينة رياضية</span><span style="font-family: 'Reem Kufi', sans-serif; font-size: 24px; color: #9EC3E0">400 م</span></li>
+<li style="display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; border-bottom: 1px solid #23415D; font-size: 18px"><span>مدارس خاصة وحكومية</span><span style="color: #9EC3E0">في المنطقة</span></li>
+<li style="display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; border-bottom: 1px solid #23415D; font-size: 18px"><span>حزام أخضر</span><span style="color: #9EC3E0">يحيط بالمنطقة</span></li>
+<li style="display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; border-bottom: 1px solid #23415D; font-size: 18px"><span>دمشق</span><span style="font-family: 'Reem Kufi', sans-serif; font-size: 24px; color: #9EC3E0">10 كم</span></li>
+</ul>
+</div>
+</section>
+
+<section id="manara-gallery" style="max-width: 1320px; margin: 0 auto; padding: 120px 40px">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: flex-end; margin-bottom: 44px">
+<div>
+<p style="margin: 0 0 14px; color: #10446E; font-weight: 500">من موقع البناء</p>
+<h2 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(36px, 4vw, 58px); line-height: 1.2">صوّرناه وهو يُبنى.</h2>
+</div>
+<p style="margin: 0; color: #46525C; max-width: 440px">صور حقيقية من مراحل التنفيذ، قبل التسليم، لترى بنفسك جودة الحجر والتفاصيل.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px">
+<figure class="mn-fig" style="margin: 0; grid-column: span 2; height: 420px; border-radius: 26px; overflow: hidden; position: relative; min-width: 0"><img class="mn-ph" src="img/facade.jpg" alt="الواجهة الحجرية ونوافذ الطوابق من الأسفل" style="width: 100%; height: 100%; object-fit: cover; display: block"><figcaption style="position: absolute; bottom: 16px; right: 16px; padding: 8px 14px; border-radius: 999px; background: rgba(250,247,241,0.92); font-size: 13px">الواجهة الحجرية</figcaption></figure>
+<figure class="mn-fig" style="margin: 0; height: 420px; border-radius: 26px; overflow: hidden; position: relative"><img class="mn-ph" src="img/balcony.jpg" alt="شرفات أحد الأبنية تحت سماء زرقاء" style="width: 100%; height: 100%; object-fit: cover; display: block"><figcaption style="position: absolute; bottom: 16px; right: 16px; padding: 8px 14px; border-radius: 999px; background: rgba(250,247,241,0.92); font-size: 13px">الشرفات</figcaption></figure>
+</div>
+<ol style="margin: 40px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 0; border-top: 2px solid #0B2238">
+<li style="padding: 20px 0 0"><span style="font-family: 'Reem Kufi', sans-serif; color: #10446E; font-size: 22px">١</span><p style="margin: 4px 0 0; font-weight: 500">الأساسات</p></li>
+<li style="padding: 20px 0 0"><span style="font-family: 'Reem Kufi', sans-serif; color: #10446E; font-size: 22px">٢</span><p style="margin: 4px 0 0; font-weight: 500">الهيكل الإنشائي</p></li>
+<li style="padding: 20px 0 0"><span style="font-family: 'Reem Kufi', sans-serif; color: #10446E; font-size: 22px">٣</span><p style="margin: 4px 0 0; font-weight: 500">الواجهات والإكساء</p></li>
+<li style="padding: 20px 0 0"><span style="font-family: 'Reem Kufi', sans-serif; color: #10446E; font-size: 22px">٤</span><p style="margin: 4px 0 0; font-weight: 600">التسليم ✓</p></li>
+</ol>
+</section>
+
+<section id="manara-contact" style="max-width: 1320px; margin: 0 auto; padding: 0 40px 110px">
+<div style="border-radius: 36px; background: #10446E; color: #FAF7F1; padding: clamp(36px, 6vw, 84px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px; position: relative; overflow: hidden">
+<img aria-hidden="true" alt="" src="img/logo_icon_light.png" style="position: absolute; left: -40px; bottom: -60px; height: 380px; width: auto; opacity: .08">
+<div style="position: relative">
+<h2 style="margin: 0; font-family: 'Reem Kufi', sans-serif; font-weight: 700; font-size: clamp(36px, 4vw, 58px); line-height: 1.2">بيعت معظم الشقق.<br>تواصل قبل أن تنتهي.</h2>
+<p style="margin: 20px 0 28px; font-size: 18px; color: #D6E0E8">راسلنا على واتساب لمعرفة الشقق المتبقية أو لحجز موعد معاينة.</p>
+<a href="https://wa.me/963936077874" style="display: inline-flex; align-items: center; gap: 12px; min-height: 60px; padding: 0 28px; border-radius: 999px; background: #FAF7F1; color: #0B2238; text-decoration: none; font-weight: 600; font-size: 18px; direction: ltr">+963 936 077 874</a>
+</div>
+<form aria-label="اطلب اتصالاً" style="position: relative; display: grid; gap: 12px; align-content: start">
+<label style="display: grid; gap: 6px; font-size: 13px; color: #D6E0E8">الاسم<input type="text" style="min-height: 52px; padding: 0 18px; border-radius: 16px; border: 1px solid #3B6A93; background: #0E3A60; color: #FAF7F1; font: inherit; font-size: 15px"></label>
+<label style="display: grid; gap: 6px; font-size: 13px; color: #D6E0E8">رقم الهاتف<input type="tel" style="min-height: 52px; padding: 0 18px; border-radius: 16px; border: 1px solid #3B6A93; background: #0E3A60; color: #FAF7F1; font: inherit; font-size: 15px; direction: ltr; text-align: right"></label>
+<label style="display: grid; gap: 6px; font-size: 13px; color: #D6E0E8">المساحة المطلوبة<select style="min-height: 52px; padding: 0 14px; border-radius: 16px; border: 1px solid #3B6A93; background: #0E3A60; color: #FAF7F1; font: inherit; font-size: 15px"><option>110–130 م²</option><option>130–150 م²</option><option>غير محدّد</option></select></label>
+<button type="submit" style="margin-top: 6px; min-height: 58px; border-radius: 999px; border: 0; background: #FAF7F1; color: #0B2238; font: inherit; font-weight: 600; font-size: 16px; cursor: pointer">اطلب اتصالاً</button>
+</form>
+</div>
+</section>
+
+<footer style="background: #0B2238; color: #C9D5DF">
+<div style="max-width: 1320px; margin: 0 auto; padding: 48px 40px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; font-size: 14px">
+<img src="img/logo_full_light.png" alt="منارة الأشرفية" style="height: 70px; width: auto; display: block">
+<span>تنفيذ وإشراف: م. مصطفى إبراهيم</span>
+<span>أشرفية صحنايا، مقابل مدرسة منهل المجد</span>
+<span style="direction: ltr">WhatsApp: +963 936 077 874</span>
+</div>
+</footer>
+
+</div>
+</main>
+
+<button id="lang" type="button"></button>
+<div id="demobar" role="region" aria-label="نموذج تفاعلي"><span class="dot" aria-hidden="true"></span><span class="txt">أنت تتصفّح موقع منارة الأشرفية من تصميمي</span><a href="#manara">العودة لدراسة الحالة</a></div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  var routes = {}; views.forEach(function(v){ routes[v.dataset.route] = v; });
+  var current = null, first = true, lastLang = 'ar';
+  var pair = {'home':'en-home','manara':'en-manara','siraj':'en-siraj','en-home':'home','en-manara':'manara','en-siraj':'siraj'};
+  var langBtn = document.getElementById('lang');
+  var skip = document.getElementById('skip');
+  langBtn.addEventListener('click', function(){ if(current && pair[current.dataset.route]) location.hash = pair[current.dataset.route]; });
+  var curtain = document.getElementById('curtain');
+  var demobar = document.getElementById('demobar');
+
+  // reveal setup
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -8% 0px'}) : null;
+  function armReveal(v){
+    if(reduce || !io) return;
+    v.querySelectorAll('h2, h3, section p, li, dl > div, .rq-card, .mf-card, aside, form').forEach(function(el){
+      if(el.closest('[aria-hidden="true"]') || el.closest('#top') ) return;
+      if(!el.classList.contains('rv')){ el.classList.add('rv'); }
+      el.classList.remove('in'); io.observe(el);
+    });
+  }
+
+  function show(route, targetId){
+    var v = routes[route] || routes.home;
+    var swap = function(){
+      views.forEach(function(x){ x.hidden = (x !== v); });
+      current = v;
+      document.title = v.dataset.title;
+      document.body.style.background = v.style.background;
+      demobar.classList.toggle('show', /^manara-site$/.test(v.dataset.route));
+      var lg = v.dataset.lang; var isSite = v.dataset.route === 'manara-site';
+      if(!isSite) lastLang = lg;
+      document.documentElement.lang = lg; document.documentElement.dir = lg === 'en' ? 'ltr' : 'rtl';
+      langBtn.hidden = !pair[v.dataset.route];
+      langBtn.textContent = lg === 'en' ? 'ع' : 'EN';
+      langBtn.setAttribute('aria-label', lg === 'en' ? 'التبديل إلى العربية' : 'Switch to English');
+      skip.setAttribute('href', lastLang === 'en' ? '#en-top' : '#top');
+      skip.textContent = lastLang === 'en' ? 'Skip to content' : 'تخطَّ إلى المحتوى';
+      if(isSite){
+        demobar.querySelector('.txt').textContent = lastLang === 'en' ? 'You are browsing the Manarat Al-Ashrafia website I designed' : 'أنت تتصفّح موقع منارة الأشرفية من تصميمي';
+        var back = demobar.querySelector('a'); back.textContent = lastLang === 'en' ? 'Back to case study' : 'العودة لدراسة الحالة'; back.setAttribute('href', lastLang === 'en' ? '#en-manara' : '#manara');
+      }
+      armReveal(v);
+      var t = targetId && document.getElementById(targetId);
+      if(t){ t.scrollIntoView(); } else { window.scrollTo(0,0); }
+    };
+    if(first || reduce || current === v){ first = false; swap(); return; }
+    curtain.className = 'cover';
+    setTimeout(function(){ swap(); curtain.className = 'reveal'; setTimeout(function(){ curtain.className=''; },520); }, 480);
+  }
+
+  function route(){
+    var h = decodeURIComponent((location.hash || '').slice(1));
+    if(!h){ var nl = (navigator.language || 'ar').toLowerCase(); show(nl.indexOf('ar') === 0 ? 'home' : 'en-home'); return; }
+    if(routes[h]){ show(h); return; }
+    var el = document.getElementById(h);
+    if(el){
+      var v = el.closest('.view');
+      if(v && v !== current){ show(v.dataset.route, h); }
+      else { el.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}); }
+      return;
+    }
+    show('home');
+  }
+  window.addEventListener('hashchange', route);
+  document.addEventListener('click', function(e){ var a = e.target.closest('a[href^="#"]'); if(a && a.getAttribute('href') === location.hash){ e.preventDefault(); route(); } });
+
+  // forms in the demo site and newsletter: no real submit
+  document.addEventListener('submit', function(e){
+    e.preventDefault();
+    var b = e.target.querySelector('[type="submit"]');
+    if(b){ var t = b.textContent; b.textContent = (lastLang === 'en' ? 'Design demo only' : 'هذا نموذج تصميم فقط'); setTimeout(function(){ b.textContent = t; }, 1800); }
+  });
+
+  // email copy buttons
+  document.querySelectorAll('.view[data-route="home"] a[href^="mailto:"], .view[data-route="en-home"] a[href^="mailto:"]').forEach(function(mail){
+    var en = mail.closest('.view').dataset.lang === 'en';
+    var label = en ? 'Copy email' : 'نسخ الإيميل', okText = en ? 'Copied ✓' : 'تم النسخ ✓';
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'copybtn'; btn.textContent = label;
+    btn.addEventListener('click', function(){
+      var addr = mail.getAttribute('href').replace('mailto:','');
+      var done = function(){ btn.textContent = okText; setTimeout(function(){ btn.textContent = label; },1800); };
+      try{ navigator.clipboard.writeText(addr).then(done, function(){ btn.textContent = addr; }); }catch(err){ btn.textContent = addr; }
+    });
+    mail.parentNode.appendChild(btn);
+  });
+
+  // progress
+  var bar = document.getElementById('progress');
+  window.addEventListener('scroll', function(){
+    var d = document.documentElement, max = d.scrollHeight - d.clientHeight;
+    bar.style.width = (max > 0 ? (d.scrollTop / max * 100) : 0) + '%';
+  }, {passive:true});
+
+  // cursor
+  var cur = document.getElementById('cur');
+  if(window.matchMedia('(pointer: fine)').matches && !reduce){
+    var x=0,y=0,cx=0,cy=0;
+    window.addEventListener('mousemove', function(e){ x=e.clientX; y=e.clientY; }, {passive:true});
+    (function loop(){ cx += (x-cx)*.2; cy += (y-cy)*.2; cur.style.transform = 'translate('+cx+'px,'+cy+'px)'; requestAnimationFrame(loop); })();
+    document.addEventListener('mouseover', function(e){ cur.classList.toggle('big', !!e.target.closest('a, button, label, select, input')); });
+  }
+
+  // intro
+  var intro = document.getElementById('intro');
+  route();
+  if(reduce){ intro.remove(); }
+  else { setTimeout(function(){ intro.classList.add('out'); setTimeout(function(){ intro.remove(); }, 950); }, 900); }
+})();
+</script>
+</body>
+</html>
