@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بيت الياسمين — نموذج موقع مطعم | رؤى إبراهيم</title>
+<meta name="description" content="نموذج تجريبي لموقع مطعم شامي: قائمة طعام تفاعلية وطلب عبر واتساب. تصميم وتطوير رؤى إبراهيم.">
+<meta property="og:title" content="نموذج موقع لمطعم — رؤى إبراهيم">
+<meta property="og:description" content="قائمة طعام تفاعلية، سلة طلب ترسل الطلب جاهزاً على واتساب، وأوقات الدوام ومناطق التوصيل.">
+<meta property="og:image" content="https://roaaib06-boop.github.io/demos/restaurant/og.jpg">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#17110D;--bg2:#211813;--card:#2A1F18;--line:#3B2D23;--cream:#F4EBDD;--mute:#B8A794;--saffron:#E8A33D;--olive:#7F8F4E;--red:#C2553A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Readex Pro',system-ui,sans-serif;background:var(--bg);color:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.demo{background:var(--saffron);color:#2A1A08;font-size:13.5px;text-align:center;padding:9px 16px;font-weight:500}
+.demo a{color:#2A1A08;font-weight:700;margin-inline-start:8px}
+header{position:sticky;top:0;z-index:20;background:rgba(23,17,13,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font-family:'Aref Ruqaa',serif;font-size:30px;text-decoration:none;color:var(--saffron);line-height:1}
+.links{display:flex;gap:28px;font-size:15px}
+.links a{text-decoration:none;color:var(--mute)}
+.links a:hover{color:var(--cream)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;background:var(--saffron);color:#2A1A08;text-decoration:none;font-weight:600;font-size:15.5px;border:0;cursor:pointer;font-family:inherit;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.btn.ghost{background:transparent;color:var(--cream);border:1.5px solid var(--line)}
+.hero{position:relative;overflow:hidden;padding-block:80px 72px}
+.hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.kicker{color:var(--saffron);font-size:15px;letter-spacing:.5px}
+h1{font-family:'Aref Ruqaa',serif;font-size:clamp(48px,7vw,96px);line-height:1.15;margin:8px 0 18px;font-weight:700}
+.lead{font-size:18.5px;color:var(--mute);max-width:480px;margin:0 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.plate{position:relative;aspect-ratio:1/1}
+.badge{position:absolute;bottom:6%;inset-inline-start:2%;background:var(--cream);color:#2A1A08;border-radius:20px;padding:14px 18px;font-size:14px;box-shadow:0 20px 40px -18px #000}
+.badge b{display:block;font-size:20px}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-top:56px}
+.info div{background:var(--bg2);padding:20px 22px}
+.info b{display:block;font-size:17px}
+.info span{font-size:14px;color:var(--mute)}
+section{padding:88px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+h2{font-size:clamp(30px,3.8vw,48px);line-height:1.25;margin:0;font-weight:700}
+.head p{margin:0;color:var(--mute);max-width:420px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.tab{font-family:inherit;font-size:15px;padding:10px 20px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--mute);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--cream);color:#2A1A08;border-color:var(--cream);font-weight:600}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.item{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px}
+.item .th{width:64px;height:64px;border-radius:16px;display:grid;place-items:center}
+.item h3{margin:0;font-size:17.5px}
+.item p{margin:2px 0 0;color:var(--mute);font-size:14px}
+.item .pr{display:grid;justify-items:end;gap:8px}
+.item .pr b{font-size:16px;color:var(--saffron);white-space:nowrap}
+.add{width:38px;height:38px;border-radius:50%;border:0;background:var(--cream);color:#2A1A08;font-size:22px;line-height:1;cursor:pointer;font-family:inherit}
+.add:active{transform:scale(.92)}
+.pricenote{color:var(--mute);font-size:13px;margin-top:16px}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tile{border-radius:28px;padding:32px;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end}
+.tile h3{margin:0 0 6px;font-size:22px}
+.tile p{margin:0;font-size:15.5px;opacity:.85}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:28px;padding:30px}
+.hours{width:100%;border-collapse:collapse;font-size:15.5px}
+.hours td{padding:11px 0;border-bottom:1px dashed var(--line)}
+.hours td:last-child{text-align:left;color:var(--mute);direction:ltr}
+.areas{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.areas span{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--mute)}
+footer{padding:40px 0 120px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:28px}
+.cart{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(140%);z-index:30;width:min(560px,calc(100% - 24px));background:var(--cream);color:#2A1A08;border-radius:22px;padding:12px 12px 12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 24px 50px -16px #000;transition:transform .35s cubic-bezier(.2,.8,.2,1),visibility .35s;visibility:hidden}
+.cart.on{transform:translateX(-50%);visibility:visible}
+.cart small{display:block;font-size:13px;opacity:.7}
+.cart b{font-size:17px}
+.cart .btn{background:#25D366;color:#fff;min-height:46px}
+.toast{position:fixed;top:90px;left:50%;transform:translateX(-50%) translateY(-10px);background:var(--cream);color:#2A1A08;padding:14px 22px;border-radius:14px;font-size:14.5px;opacity:0;pointer-events:none;transition:.3s;z-index:40;max-width:90vw;text-align:center;box-shadow:0 20px 40px -16px #000}
+.toast.on{opacity:1;transform:translateX(-50%)}
+@media (max-width:900px){
+ .links{display:none}
+ .hero .grid,.story,.visit{grid-template-columns:1fr}
+ .menu{grid-template-columns:1fr}
+ .plate{max-width:420px;margin:0 auto;width:100%}
+}
+@media (max-width:560px){
+ .nav .btn{display:none}
+ .info{grid-template-columns:1fr}
+ section{padding:64px 0}
+ .hero{padding-block:40px 40px}
+ .item{grid-template-columns:52px 1fr auto;gap:12px;padding:12px}
+ .item .th{width:52px;height:52px}
+}
+</style>
+</head>
+<body>
+<div class="demo">نموذج تجريبي من تصميم رؤى إبراهيم، والمطعم اسم افتراضي.<a href="../../services/">اطلب موقعاً مثله لمشروعك ←</a></div>
+
+<header>
+ <div class="wrap nav">
+  <a class="logo" href="#top">بيت الياسمين</a>
+  <nav class="links"><a href="#menu">القائمة</a><a href="#story">حكايتنا</a><a href="#visit">زورونا</a></nav>
+  <a class="btn" href="#menu">اطلب الآن</a>
+ </div>
+</header>
+
+<main id="top">
+ <div class="hero wrap">
+  <div class="grid">
+   <div>
+    <span class="kicker">مطبخ شامي بيتي · منذ ٢٠٠٩</span>
+    <h1>طعم البيت<br>بنكهة الشام</h1>
+    <p class="lead">أطباق شامية تُطبخ كل يوم بمكونات طازجة. اطلب من القائمة وتصلك رسالة الطلب جاهزة على واتساب.</p>
+    <div class="cta">
+     <a class="btn" href="#menu">تصفّح القائمة</a>
+     <a class="btn ghost" href="#visit">الموقع والدوام</a>
+    </div>
+   </div>
+   <div class="plate" aria-hidden="true">
+    <svg viewBox="0 0 400 400" width="100%" height="100%">
+     <defs><radialGradient id="g" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#3A2A1F"/><stop offset="1" stop-color="#17110D"/></radialGradient></defs>
+     <circle cx="200" cy="200" r="190" fill="url(#g)"/>
+     <circle cx="200" cy="200" r="150" fill="#F4EBDD"/>
+     <circle cx="200" cy="200" r="128" fill="#EADBC3"/>
+     <circle cx="200" cy="200" r="96" fill="#E3C79A"/>
+     <path d="M200 120a80 80 0 010 160" fill="none" stroke="#C99A55" stroke-width="10" stroke-linecap="round" opacity=".6"/>
+     <circle cx="200" cy="200" r="30" fill="#B5873E"/>
+     <circle cx="200" cy="200" r="16" fill="#7F8F4E"/>
+     <g fill="#C2553A"><circle cx="160" cy="160" r="5"/><circle cx="244" cy="170" r="4"/><circle cx="236" cy="246" r="5"/><circle cx="160" cy="240" r="4"/><circle cx="200" cy="140" r="3.5"/></g>
+     <g fill="#7F8F4E"><ellipse cx="270" cy="210" rx="10" ry="5" transform="rotate(-30 270 210)"/><ellipse cx="135" cy="205" rx="10" ry="5" transform="rotate(25 135 205)"/><ellipse cx="205" cy="275" rx="9" ry="4.5"/></g>
+     <g fill="#E8A33D"><path d="M330 70l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/><path d="M62 320l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></g>
+    </svg>
+    <div class="badge"><b>توصيل خلال ٤٥ دقيقة</b>داخل المناطق القريبة</div>
+   </div>
+  </div>
+  <div class="info">
+   <div><b>يومياً ١٢ ظهراً – ١٢ ليلاً</b><span>صالة وتوصيل وسفري</span></div>
+   <div><b>طلب بنقرة</b><span>السلة ترسل طلبك جاهزاً على واتساب</span></div>
+   <div><b>طبخ اليوم</b><span>مكونات طازجة كل صباح</span></div>
+  </div>
+ </div>
+
+ <section id="menu" style="background:var(--bg2)">
+  <div class="wrap">
+   <div class="head"><h2>القائمة</h2><p>اختر أطباقك وأضفها إلى السلة، ثم أرسل الطلب بضغطة واحدة.</p></div>
+   <div class="tabs" role="tablist" id="tabs"></div>
+   <div class="menu" id="list"></div>
+   <p class="pricenote">الأسعار توضيحية لأغراض العرض.</p>
+  </div>
+ </section>
+
+ <section id="story">
+  <div class="wrap">
+   <div class="head"><h2>حكايتنا</h2><p>بدأنا بمطبخ عائلي صغير، وما زلنا نطبخ بالطريقة نفسها.</p></div>
+   <div class="story">
+    <div class="tile" style="background:linear-gradient(160deg,#7F8F4E,#4E5A2C)"><h3>وصفات العائلة</h3><p>الكبة والمحاشي والفتّات بوصفات تتوارثها العائلة منذ أكثر من خمسة عشر عاماً.</p></div>
+    <div class="tile" style="background:linear-gradient(160deg,#C2553A,#7D2F1E)"><h3>طازج كل يوم</h3><p>نشتري الخضار واللحم صباحاً، ولا نطبخ أي طبق مسبقاً لأيام.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="visit" style="padding-top:0">
+  <div class="wrap">
+   <div class="head"><h2>زورونا أو اطلبوا</h2><p>صالة عائلية هادئة، ويصلكم التوصيل إلى المناطق القريبة.</p></div>
+   <div class="visit">
+    <div class="panel">
+     <h3 style="margin:0 0 8px;font-size:20px">أوقات الدوام</h3>
+     <table class="hours">
+      <tr><td>السبت إلى الخميس</td><td>12:00 – 00:00</td></tr>
+      <tr><td>الجمعة</td><td>14:00 – 00:00</td></tr>
+     </table>
+     <h3 style="margin:22px 0 0;font-size:18px">مناطق التوصيل</h3>
+     <div class="areas"><span>المنطقة الأولى</span><span>المنطقة الثانية</span><span>المنطقة الثالثة</span><span>المنطقة الرابعة</span></div>
+    </div>
+    <div class="panel" style="padding:0;overflow:hidden">
+     <svg viewBox="0 0 480 300" width="100%" aria-label="خريطة توضيحية"><rect width="480" height="300" fill="#2A1F18"/><path d="M0 200 C140 160 240 240 480 150" stroke="#3B2D23" stroke-width="26" fill="none"/><path d="M170 0 L230 300" stroke="#3B2D23" stroke-width="18"/><path d="M360 0 L320 300" stroke="#3B2D23" stroke-width="14"/><g transform="translate(250 130)"><circle r="30" fill="#E8A33D" opacity=".2"/><path d="M0 16c-11-13-18-22-18-31a18 18 0 0136 0c0 9-7 18-18 31z" fill="#E8A33D"/><circle cy="-15" r="6.5" fill="#17110D"/></g><text x="24" y="276" fill="#B8A794" font-family="Readex Pro" font-size="13">في الموقع الحقيقي: خريطة غوغل وزر الاتجاهات</text></svg>
+    </div>
+   </div>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span>© بيت الياسمين، اسم افتراضي لأغراض العرض.</span>
+  <span>تصميم وتطوير <a href="../../">رؤى إبراهيم</a> · <a href="../../services/">اطلب موقعاً لمشروعك</a></span>
+ </div>
+</footer>
+
+<div class="cart" id="cart" aria-live="polite">
+ <div><small id="cc">٠ أطباق</small><b id="ct">٠ ل.س</b></div>
+ <button class="btn" id="send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.5 7.4L3 20.5l1.6-5.3A8.5 8.5 0 1121 11.5z"/></svg>أرسل الطلب على واتساب</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var M={
+ 'مقبلات':[['حمص بطحينة','حمص ناعم وطحينة وزيت زيتون',30,'#E3C79A'],['متبل باذنجان','باذنجان مشوي على الفحم',30,'#8E6B4A'],['فتوش','خضار طازجة وخبز محمّص ودبس رمان',35,'#7F8F4E'],['كبة مقلية','٤ قطع محشوة لحمة وصنوبر',45,'#B5703E']],
+ 'أطباق رئيسية':[['فتة مكدوس','باذنجان ولحمة ولبن وصنوبر',75,'#C2553A'],['شيش طاووق','صدر دجاج متبّل مع بطاطا وثوم',80,'#E8A33D'],['كباب حلبي','لحم غنم مشوي مع خبز وبندورة',95,'#9A4B2F'],['مقلوبة','أرز وباذنجان ودجاج ولوز',85,'#C99A55']],
+ 'حلويات':[['كنافة نابلسية','بالجبن الطازج والقطر',50,'#E8A33D'],['مهلبية','بماء الزهر والفستق',25,'#F4EBDD'],['حلاوة الجبن','بالقشطة والفستق الحلبي',55,'#EADBC3']],
+ 'مشروبات':[['ليموناضة بالنعنع','طازجة',20,'#B9C77A'],['عرقسوس','بارد',15,'#5A3A22'],['شاي بالهيل','إبريق',15,'#9A4B2F']]
+};
+var cart={},cur=Object.keys(M)[0];
+function ar(n){return String(n).replace(/\d/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d]})}
+function tabs(){var t=document.getElementById('tabs');t.innerHTML='';Object.keys(M).forEach(function(k){var b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=k;b.setAttribute('aria-selected',k===cur);b.onclick=function(){cur=k;tabs();list()};t.appendChild(b)})}
+function list(){var l=document.getElementById('list');l.innerHTML='';M[cur].forEach(function(it){var d=document.createElement('article');d.className='item';d.innerHTML='<div class="th" style="background:'+it[3]+'22"><svg width="34" height="34" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="'+it[3]+'"/><circle cx="20" cy="20" r="9" fill="#ffffff" opacity=".25"/></svg></div><div><h3>'+it[0]+'</h3><p>'+it[1]+'</p></div><div class="pr"><b>'+ar(it[2])+' ل.س</b><button class="add" aria-label="أضف '+it[0]+'">+</button></div>';d.querySelector('.add').onclick=function(){cart[it[0]]=cart[it[0]]||{q:0,p:it[2]};cart[it[0]].q++;upd()};l.appendChild(d)})}
+function upd(){var q=0,s=0;for(var k in cart){q+=cart[k].q;s+=cart[k].q*cart[k].p}document.getElementById('cc').textContent=ar(q)+(q>2&&q<11?' أطباق':' طبق');document.getElementById('ct').textContent=ar(s)+' ل.س';document.getElementById('cart').classList.toggle('on',q>0)}
+document.getElementById('send').onclick=function(){var lines=[];for(var k in cart)lines.push(cart[k].q+' × '+k);var t=document.getElementById('toast');t.textContent='نموذج تجريبي: في الموقع الحقيقي يفتح واتساب المطعم وفيه الطلب جاهزاً ('+lines.join('، ')+').';t.classList.add('on');setTimeout(function(){t.classList.remove('on')},4200)};
+tabs();list();
+</script>
+</body>
+</html>
